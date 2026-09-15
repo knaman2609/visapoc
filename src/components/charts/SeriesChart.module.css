@@ -1,0 +1,141 @@
+.wrap { display: flex; flex-direction: column; gap: 12px; }
+
+/* The legend carries the value, so identity never depends on a colour. */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.legItem {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 3px 2px;
+  font: inherit;
+  cursor: pointer;
+  border-radius: var(--r-sm);
+}
+.legItem:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 1px; }
+.key {
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  align-self: center;
+  flex: none;
+}
+
+.legLabel { font-size: 12px; font-weight: 500; color: var(--c-text-muted); }
+.legV {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--c-text-4);
+  font-variant-numeric: tabular-nums;
+}
+.legOn .legLabel { color: var(--c-text); font-weight: 700; }
+.legOn .legV { color: var(--c-text); }
+
+/* ── Plot ─────────────────────────────────────────────── */
+.plotWrap { position: relative; padding-left: 52px; }
+
+.yAxis { position: absolute; left: 0; top: 0; bottom: 0; width: 46px; }
+.yAxis span {
+  position: absolute;
+  right: 0;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+  white-space: nowrap;
+}
+
+.plot { position: relative; }
+.svg { display: block; width: 100%; }
+
+.grid { stroke: var(--ch-grid); stroke-width: 1; }
+.cross { stroke: var(--c-text-dim); stroke-width: 1; }
+
+.line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition: opacity var(--dur-fast) var(--easing-out);
+}
+/* Emphasis rides on top of colour: the asked-for series thickens, the rest
+   step back without losing their identity. */
+.lead { stroke-width: 2.75; }
+.faded { opacity: .28; }
+
+/* The six categorical slots — see tokens.css for how they were chosen. */
+.c0 { stroke: var(--ch-cat-1); background: var(--ch-cat-1); }
+.c1 { stroke: var(--ch-cat-2); background: var(--ch-cat-2); }
+.c2 { stroke: var(--ch-cat-3); background: var(--ch-cat-3); }
+.c3 { stroke: var(--ch-cat-4); background: var(--ch-cat-4); }
+.c4 { stroke: var(--ch-cat-5); background: var(--ch-cat-5); }
+.c5 { stroke: var(--ch-cat-6); background: var(--ch-cat-6); }
+
+/* A 2px surface ring keeps a marker legible where lines cross. */
+.dot {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--c-surface);
+  pointer-events: none;
+}
+.dotFaded { opacity: .3; }
+
+.tip {
+  position: absolute;
+  top: 0;
+  margin-left: 12px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 208px;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: var(--c-text);
+  color: #fff;
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+}
+.tipLeft { transform: translateX(-100%); margin-left: -12px; }
+.tipMonth {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .7);
+  margin-bottom: 2px;
+}
+.tipRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, .78);
+}
+.tipRow b {
+  margin-left: auto;
+  padding-left: 14px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, .92);
+}
+.tipOn { color: #fff; }
+.tipOn b { color: #fff; }
+
+.months {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 52px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+}

@@ -1,0 +1,15 @@
+.shell {
+  min-height: 100vh;
+  background: var(--c-bg);
+  display: flex;
+  align-items: stretch;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  background: var(--c-surface);
+  border-left: 1px solid var(--c-border);
+  display: flex;
+  flex-direction: column;
+}

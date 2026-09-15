@@ -1,0 +1,187 @@
+.side {
+  width: var(--sidebar-w);
+  flex: none;
+  background: var(--c-bg);
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px 18px;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* The lockup reads as one name on one line: the Visa wordmark, then the
+   product it is. The mark carries "Visa", so the descriptor does not repeat
+   it. Both are sized to clear the 196px of usable sidebar width together. */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: var(--header-h);
+  padding: 0 var(--s-2);
+  flex: none;
+}
+
+/* The wordmark's artwork is short and wide inside a square viewBox, so it is
+   sized by width — height follows and the mark centres in the leftover space. */
+.logo {
+  width: 50px;
+  height: auto;
+  flex: none;
+}
+
+/* Descriptor, not a second wordmark — it sits beside the Visa mark, quieter. */
+.name {
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: -0.01em;
+  color: var(--c-text-3);
+  white-space: nowrap;
+}
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: var(--s-2);
+  overflow: auto;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--c-text-soft);
+  text-transform: uppercase;
+  padding: 0 10px 6px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  text-decoration: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+}
+.item:hover { background: var(--c-border-mid5); }
+
+.active {
+  background: var(--c-surface);
+  box-shadow: var(--shadow-sm);
+  cursor: default;
+}
+.active:hover { background: var(--c-surface); }
+
+.icon {
+  flex: none;
+  color: var(--c-text-mute-2);
+  transition: color var(--dur-fast) var(--easing-out);
+}
+.item:hover .icon { color: var(--c-text-3); }
+.active .icon, .active:hover .icon { color: var(--c-brand); }
+
+.text {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--c-text-5);
+}
+.active .text {
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.notify {
+  margin-left: auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-brand);
+}
+
+.user {
+  margin-top: auto;
+  padding: 12px 10px 0;
+  border-top: 1px solid var(--c-border-mid2);
+}
+
+.userName {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.userRole {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+  margin-top: 2px;
+  line-height: 1.35;
+}
+
+/* ── Expandable item ──────────────────────────────────── */
+/* A parent that is open reads as a heading for its children rather than as a
+   selected row — the selection belongs to whichever child you are on. */
+.parentOn .text { font-weight: 700; color: var(--c-text); }
+.parentOn .icon { color: var(--c-brand); }
+
+.chev {
+  margin-left: auto;
+  flex: none;
+  color: var(--c-text-soft);
+  transition: transform var(--dur-fast) var(--easing-out);
+}
+.chevOpen { transform: rotate(90deg); }
+
+.children {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 2px 0 4px 27px;
+  padding-left: 11px;
+  border-left: 1px solid var(--c-border-mid4);
+}
+
+.child {
+  appearance: none;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  padding: 7px 10px;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out),
+              color var(--dur-fast) var(--easing-out);
+}
+.child:hover { background: var(--c-border-mid5); color: var(--c-text-3); }
+.childOn {
+  background: var(--c-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--c-text);
+  font-weight: 700;
+}
+.childOn:hover { background: var(--c-surface); color: var(--c-text); }
+
+@media (prefers-reduced-motion: reduce) {
+  .chev, .child { transition: none; }
+}

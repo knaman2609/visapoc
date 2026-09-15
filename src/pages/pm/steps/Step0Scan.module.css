@@ -1,0 +1,160 @@
+/* ── The book in five numbers ─────────────────────────── */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin: 28px 56px 0;
+}
+.kpi {
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  padding: 14px 16px;
+  min-width: 0;
+}
+.kpiK {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+.kpiV {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-top: 6px;
+}
+.kpiNote {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 4px;
+}
+.kpiUp { color: var(--c-ok); font-weight: 600; }
+.kpiBad { color: var(--c-danger); font-weight: 600; }
+
+/* A ratio against a limit is a meter, not a chart. */
+.meter {
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--c-surface-hi5);
+  margin: 9px 0 5px;
+  overflow: hidden;
+}
+.meterFill {
+  display: block;
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--ch-value-3);
+}
+
+/* ── Opportunities ────────────────────────────────────── */
+.mainHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 30px 56px 14px;
+}
+.mainH1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0;
+  color: var(--c-text);
+}
+.mainSub {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 6px;
+  max-width: 78ch;
+}
+.mainSub b { color: var(--c-text-2); font-weight: 700; }
+.tableWrap {
+  padding: 0 56px;
+  overflow-x: auto;
+}
+
+.rowHead,
+.row {
+  display: grid;
+  grid-template-columns: 2.2fr 88px 1.5fr 104px 116px 118px 148px;
+  gap: 14px;
+  align-items: center;
+}
+
+.rowHead {
+  padding: 10px 12px;
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+  font-family: var(--font-mono);
+  font-size: var(--th-size);
+  font-weight: var(--th-weight);
+  letter-spacing: var(--th-track);
+  color: var(--th-color);
+  text-transform: uppercase;
+}
+.num { text-align: right; }
+
+.row {
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--c-border-mid3);
+}
+.rowActive {
+  background: var(--c-brand-soft);
+  box-shadow: inset 3px 0 0 var(--c-gold);
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+.conf {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-text-muted);
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+.cust {
+  text-align: right;
+  font-size: 15px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.chips { display: flex; flex-direction: column; gap: 5px; align-items: flex-start; }
+
+.cost { text-align: right; }
+.costV {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-danger);
+  font-variant-numeric: tabular-nums;
+}
+.roiV {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--c-ok);
+  font-variant-numeric: tabular-nums;
+}
+.costK { font-size: 10.5px; font-weight: 500; color: var(--c-text-mute-2); margin-top: 3px; }
+
+.impact { font-size: 15px; font-weight: 800; font-family: var(--font-mono); color: var(--c-brand-dark); }
+.impactNote { font-size: 11px; font-weight: 500; color: var(--c-text-muted); margin-top: 2px; }
+
+@media (max-width: 1400px) {
+  .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .rowHead, .row { grid-template-columns: 1.9fr 76px 1.2fr 92px 100px 104px 128px; gap: 10px; }
+}

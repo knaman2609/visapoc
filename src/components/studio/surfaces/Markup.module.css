@@ -1,0 +1,22 @@
+.token {
+  background: color-mix(in srgb, var(--c-brand) 13%, transparent);
+  color: var(--c-brand-dark);
+  border-radius: 3px;
+  padding: 0 3px;
+  font-size: .92em;
+  font-weight: 500;
+}
+
+/* Clients render a link in their own blue; the tone says whose. */
+.link { color: #0b6bff; text-decoration: underline; text-underline-offset: 1.5px; }
+.wa { color: #027eb5; }
+.gmail { color: #1a73e8; }
+.dark { color: #8ab4f8; }
+
+/* What the client will not draw. Kept on screen, struck through and faded,
+   because "the deadline is the part that gets cut" is the finding. */
+.lost {
+  opacity: .26;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}

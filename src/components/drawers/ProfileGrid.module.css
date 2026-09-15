@@ -1,0 +1,121 @@
+.wrap { max-width: 520px; margin-top: 14px; }
+
+.header {
+  display: grid;
+  grid-template-columns: 104px repeat(3, 1fr);
+  border-top: 1px solid var(--c-border);
+}
+
+.colLabel {
+  font-family: var(--font-mono);
+  font-size: var(--th-size);
+  font-weight: var(--th-weight);
+  letter-spacing: var(--th-track);
+  color: var(--th-color);
+  text-transform: uppercase;
+  padding: 8px 4px;
+  text-align: center;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 104px repeat(3, 1fr);
+  align-items: stretch;
+}
+
+.rowLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.cell {
+  position: relative;
+  height: 58px;
+  margin: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.cellHere {
+  border: 1px solid var(--c-brand-line);
+  background: var(--c-brand-tint);
+}
+.cellWas {
+  border: 1px dashed rgba(15, 79, 216, 0.5);
+  background: var(--c-hover-blue);
+}
+.wasText {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--c-brand-dark);
+}
+.cellPlain {
+  border: 1px solid var(--c-border-mid3);
+  background: #fafafa;
+}
+
+.dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--c-brand);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.note {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  line-height: 1.5;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--c-border-mid3);
+}
+
+/* ── Density wash and cell counts ─────────────────────── */
+/* How many of the population sit in each cell. The wash reads the shape at a
+   glance; the number is there when you actually want to compare two cells. */
+.wash {
+  position: absolute;
+  inset: 0;
+  background: var(--c-danger);
+  pointer-events: none;
+}
+
+.count {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+  font-variant-numeric: tabular-nums;
+}
+.cellHere .count { color: var(--c-brand-dark); }
+
+/* ── Compact: the version that fits a side panel ───────── */
+.compact { max-width: none; margin-top: 10px; }
+.compact .header,
+.compact .row { grid-template-columns: 58px repeat(3, 1fr); }
+.compact .colLabel { font-size: 8px; font-weight: 500; letter-spacing: 0.06em; padding: 6px 2px; }
+.compact .rowLabel { font-size: 8px; font-weight: 500; letter-spacing: 0.06em; padding-right: 7px; text-align: right; }
+.compact .cell { height: 44px; margin: 2px; }
+.compact .dot { width: 26px; height: 26px; font-size: 9px; font-weight: 500; }
+.compact .count { font-size: 8.5px; font-weight: 500; right: 4px; bottom: 2px; }

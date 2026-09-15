@@ -1,0 +1,185 @@
+.wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 232px;
+  gap: 24px;
+  align-items: start;
+}
+
+.stage { position: relative; min-width: 0; }
+.tall { height: 470px; }
+.wide { height: 380px; }
+
+/* The SVG is fitted into the frame and centred, which on the portrait map
+   leaves the readout a column of its own beside the coast. */
+.map { display: block; width: 100%; height: 100%; }
+
+/* ── Fills ──────────────────────────────────────────────────────────── */
+
+/* Land the book does not reach, and the issuing market itself. Both are ink
+   the eye reads as background, so the ramp is the only thing carrying value. */
+.rest { fill: var(--c-surface-hi5); stroke: var(--c-surface); stroke-width: 0.6; }
+.home { fill: var(--c-border-mid3); stroke: var(--c-surface); stroke-width: 0.6; }
+
+.area {
+  stroke: var(--c-surface);
+  stroke-width: 1;
+  cursor: pointer;
+  transition: fill var(--dur-fast) var(--easing-out);
+  vector-effect: non-scaling-stroke;
+}
+.area:hover { stroke: var(--c-text); stroke-width: 1.5; }
+.area:focus-visible { outline: none; stroke: var(--c-brand); stroke-width: 2.5; }
+.on { stroke: var(--c-gold); stroke-width: 2.5; }
+
+/* One hue, light to dark — the only correct encoding for magnitude. */
+.t_value .s1 { fill: var(--ch-value-6); }
+.t_value .s2 { fill: var(--ch-value-5); }
+.t_value .s3 { fill: var(--ch-value-4); }
+.t_value .s4 { fill: var(--ch-value-3); }
+.t_value .s5 { fill: var(--ch-value-2); }
+
+.t_risk .s1 { fill: var(--ch-risk-6); }
+.t_risk .s2 { fill: var(--ch-risk-5); }
+.t_risk .s3 { fill: var(--ch-risk-4); }
+.t_risk .s4 { fill: var(--ch-risk-3); }
+.t_risk .s5 { fill: var(--ch-risk-2); }
+
+/* ── The readout ────────────────────────────────────────────────────── */
+
+.read {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 13px;
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-mid5);
+  pointer-events: none;
+  max-width: 62%;
+}
+.readOn { border-color: var(--c-brand-line); background: var(--c-brand-tint); }
+
+.readK {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.readOn .readK { color: var(--c-brand-dark); }
+.readV {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--c-text);
+  font-variant-numeric: tabular-nums;
+}
+.readSub { font-size: 11px; font-weight: 500; color: var(--c-text-mute-2); }
+
+.homeKey {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+}
+.homeSwatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--c-border-mid3);
+}
+
+/* ── Ramp legend and ranking ────────────────────────────────────────── */
+.side { display: flex; flex-direction: column; gap: 16px; }
+
+.rampRow { display: flex; flex-direction: column; gap: 6px; }
+.rampK {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+.ramp { display: flex; height: 8px; border-radius: var(--r-pill); overflow: hidden; }
+.ramp i { flex: 1; }
+.t_value .f1 { background: var(--ch-value-6); }
+.t_value .f2 { background: var(--ch-value-5); }
+.t_value .f3 { background: var(--ch-value-4); }
+.t_value .f4 { background: var(--ch-value-3); }
+.t_value .f5 { background: var(--ch-value-2); }
+.t_risk .f1 { background: var(--ch-risk-6); }
+.t_risk .f2 { background: var(--ch-risk-5); }
+.t_risk .f3 { background: var(--ch-risk-4); }
+.t_risk .f4 { background: var(--ch-risk-3); }
+.t_risk .f5 { background: var(--ch-risk-2); }
+
+.rampEnds {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--c-text-mute-2);
+}
+
+.rank { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.rank li { border-bottom: 1px solid var(--c-border-mid6); }
+.rank li:last-child { border-bottom: 0; }
+
+.rankBtn {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: baseline;
+  width: 100%;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 7px 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.rankNo {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+}
+.rankName {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--c-text-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rankV {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--c-text);
+  font-variant-numeric: tabular-nums;
+}
+.rankOn .rankName,
+.rankOn .rankV,
+.rankOn .rankNo { color: var(--c-brand-dark); }
+
+@media (max-width: 1180px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .area { transition: none; }
+}

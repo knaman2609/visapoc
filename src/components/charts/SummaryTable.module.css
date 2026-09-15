@@ -1,0 +1,84 @@
+.wrap { overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.table th,
+.table td {
+  padding: 10px 14px;
+  text-align: right;
+  border-bottom: 1px solid var(--c-border-mid6);
+  font-variant-numeric: tabular-nums;
+  color: var(--c-text-3);
+  white-space: nowrap;
+}
+
+.table thead th {
+  border-bottom: 1px solid var(--c-border);
+  vertical-align: bottom;
+}
+.colLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--th-size);
+  font-weight: var(--th-weight);
+  letter-spacing: var(--th-track);
+  color: var(--th-color);
+  text-transform: uppercase;
+}
+/* The book's own figure under each heading, so a row reads against the whole. */
+.colTotal {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+  margin-top: 3px;
+}
+
+.first { text-align: left; }
+.rowName { display: block; font-size: 13px; font-weight: 600; color: var(--c-text-2); }
+.rowSub { display: block; font-size: 11px; font-weight: 500; color: var(--c-text-mute-2); margin-top: 2px; }
+
+.table tbody tr { cursor: pointer; transition: background var(--dur-fast) var(--easing-out); }
+.table tbody tr:hover { background: var(--c-surface-hi3); }
+.on { background: var(--c-brand-soft); }
+.on:hover { background: var(--c-brand-soft); }
+.on .rowName { color: var(--c-brand-dark); }
+.table tbody tr:focus-visible { outline: 2px solid var(--c-brand); outline-offset: -2px; }
+
+/* A row the book would flag — tinted, never colour alone: the cell that
+   caused it is the one that changes ink. */
+.bad { background: var(--c-danger-soft); }
+.bad:hover { background: var(--c-danger-bg); }
+.cellBad { color: var(--c-danger); font-weight: 700; }
+
+/* The column's measure, so a head reads the same as the chip that chose it. */
+.colIcon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 6px;
+  position: relative;
+  top: 1.5px;
+  color: var(--c-text-mute-2);
+}
+
+/* The flag was colour alone, which is not a channel every reader has. */
+.flagMark {
+  flex: none;
+  margin-right: 6px;
+  color: var(--c-danger);
+  vertical-align: -2px;
+}
+
+.rowMark {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 7px;
+  color: var(--c-text-mute-2);
+  vertical-align: -2px;
+}
+.on .rowMark { color: var(--c-brand); }

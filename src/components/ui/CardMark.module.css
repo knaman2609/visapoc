@@ -1,0 +1,7 @@
+/* The face keeps its own colours through hover and selection — a card's
+   colour is its identity, not a state. The row background carries the state. */
+.card {
+  display: block;
+  flex: none;
+  border-radius: 2.6px;
+}

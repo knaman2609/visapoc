@@ -1,0 +1,190 @@
+/* Sized against the step body, not the window — the sidebar and the agent
+   panel both eat into how much room this actually gets. */
+.body { container-type: inline-size; }
+
+/* ── Pre-flight: the render is the evidence, so it reads as checks ──── */
+.preflight {
+  margin-top: 24px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.preHead {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 11px 16px;
+  background: var(--c-surface-hi2);
+  border-bottom: 1px solid var(--c-border-mid2);
+}
+.preKick {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+.preCount {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--c-brand-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.check {
+  display: grid;
+  grid-template-columns: 18px 190px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--c-surface);
+}
+.check + .check { border-top: 1px solid var(--c-border-mid6); }
+
+.mark {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  transition: background var(--dur-fast) var(--easing-out),
+              border-color var(--dur-fast) var(--easing-out);
+}
+.markWait {
+  border: 1px solid var(--c-border-mid4);
+  background: var(--c-surface);
+}
+.markOk   { background: var(--c-ok); }
+.markWarn { background: var(--c-warn-2); }
+
+.checkLabel { font-size: 13px; font-weight: 500; color: var(--c-text-mute-2); }
+.checkOn .checkLabel { color: var(--c-text-2); font-weight: 500; }
+
+.track {
+  height: 4px;
+  border-radius: var(--r-pill);
+  background: var(--c-surface-hi5);
+  overflow: hidden;
+}
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--c-brand);
+  transition: width var(--dur-fast) linear;
+}
+
+.checkFig {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.checkOn .checkFig { color: var(--c-text-3); }
+
+/* ── What goes out, and what came back ─────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 36px;
+  align-items: start;
+  margin-top: 30px;
+}
+.side { display: flex; flex-direction: column; gap: 26px; }
+
+.colKick {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+
+.rows { margin: 10px 0 0; }
+.rows > div {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--c-border-mid6);
+}
+.rows dt {
+  display: flex;
+  align-items: baseline;
+  flex: none;
+  width: 116px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+}
+.rows dd {
+  margin: 0 0 0 auto;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-text-2);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.side .rows dt { width: auto; }
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--r-pill);
+  margin-right: 7px;
+  align-self: center;
+}
+.ch_email { background: var(--c-brand); }
+.ch_wa    { background: var(--c-ok); }
+.ch_sms   { background: var(--c-warn-2); }
+.ch_voice { background: var(--c-voice); }
+.ch_rm    { background: var(--c-rm); }
+
+.guards { list-style: none; margin: 10px 0 0; padding: 0; }
+.guards li {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--c-text-5);
+  padding: 8px 0 8px 16px;
+  border-bottom: 1px solid var(--c-border-mid6);
+  position: relative;
+  text-wrap: pretty;
+}
+.guards li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--c-ok);
+}
+
+/* ── The one irreversible act in the flow states what it costs ─────── */
+.confirm {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--c-danger);
+  padding-left: 12px;
+  border-left: 2px solid var(--c-danger);
+  font-variant-numeric: tabular-nums;
+  text-wrap: pretty;
+}
+.confirm b { font-weight: 700; }
+
+@container (max-width: 1040px) {
+  .grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+}

@@ -1,0 +1,113 @@
+.stateWrap { display: flex; align-items: center; gap: 8px; }
+.stateK {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-text-muted);
+}
+.stateV {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: var(--c-brand-tint);
+  color: var(--c-brand-dark);
+  padding: 6px 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 24px;
+  border-top: 1px solid var(--c-border);
+}
+.left {
+  padding: 20px 24px 20px 0;
+  border-right: 1px solid var(--c-border-mid3);
+}
+.right { padding: 20px 0 20px 24px; }
+
+.kick {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+
+.launchList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+.launchRow {
+  display: grid;
+  grid-template-columns: .8fr 1.5fr;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--c-border-mid3);
+}
+.launchK {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+.launchV { font-size: 13.5px; font-weight: 500; line-height: 1.45; }
+
+.approvers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+.approver {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid var(--c-border-mid);
+  padding: 14px 16px;
+}
+.role { font-size: 14px; font-weight: 700; }
+.name { font-size: 11.5px; font-weight: 500; color: var(--c-text-muted); margin-top: 2px; }
+.stamp {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  color: var(--c-ok);
+  white-space: nowrap;
+}
+
+.emptyBox { width: 16px; height: 16px; border: 1px solid var(--c-border-mid2); }
+
+.approvedBox {
+  border: 1px solid var(--c-ok-border);
+  background: var(--c-ok-bg);
+  padding: 14px 16px;
+  margin-top: 18px;
+}
+.approvedHead {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-ok);
+}
+.approvedText { font-size: 13px; font-weight: 500; line-height: 1.5; margin-top: 6px; }
+
+/* The second line on a launch row — where a figure came from, or what it
+   means. Approvers read the value; this is why it says that. */
+.launchNote {
+  margin-top: 2px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--c-text-mute-2);
+}

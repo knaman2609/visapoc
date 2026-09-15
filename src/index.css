@@ -1,0 +1,29 @@
+@import "./styles/tokens.css";
+@import "./styles/keyframes.css";
+@import "./styles/themes.css";
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--c-bg);
+  color: var(--c-text-2);
+  font-family: var(--font-sans);
+}
+
+#root { min-height: 100vh; }
+
+a { color: var(--c-brand); text-decoration: none; }
+a:hover { color: var(--c-brand-dark); }
+
+button { font-family: inherit; }
+button:focus-visible,
+[role="button"]:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 2px;
+}
+
+::selection { background: color-mix(in srgb, var(--c-brand) 24%, transparent); }

@@ -1,0 +1,291 @@
+/* ── Xyne Desk palette ────────────────────────────────────────────────
+   The support screens are Xyne Desk embedded in this console, so inside them
+   colour comes from Desk's own palette rather than Visa Nova's: its desk accent
+   (#6276be), its greys and borders, its stage-status and priority hues and its
+   AI red. They are declared once, here, on the class every desk screen puts on
+   its root — nothing outside a desk root can read them, and nothing inside one
+   hard-codes a colour of its own. Values are lifted from xyne-spaces
+   (global.css desk vars, KanbanBoardScreen status vars, Tailwind palette). */
+.theme {
+  --xd-fg: #101828;
+  --xd-fg-2: #374151;
+  --xd-fg-3: #6b7280;
+  --xd-helper: #a0a7ab;
+  --xd-surface: #ffffff;
+  --xd-subtle: #f9fafb;
+  --xd-muted: #f2f4f8;
+  --xd-hover: #f5f7fa;
+  --xd-border: #e4e6e7;
+  --xd-border-strong: #d1d5db;
+  --xd-primary: #0e121b;
+  --xd-primary-hover: #2b303b;
+  --xd-on-primary: #ffffff;
+  --xd-accent: #6276be;
+  --xd-accent-hover: #4f62a8;
+  --xd-accent-badge: #eef0fb;
+  --xd-accent-subtle: color-mix(in srgb, #6276be 12%, transparent);
+  --xd-destructive: #ff4b4b;
+
+  --xd-status-new: #6b7280;
+  --xd-status-pending: #d97706;
+  --xd-status-scheduled: #2563eb;
+  --xd-status-success: #16a34a;
+  --xd-status-failure: #dc2626;
+  --xd-status-paused: #7c3aed;
+
+  --xd-p-low: #22c55e;
+  --xd-p-medium: #eab308;
+  --xd-p-high: #f97316;
+  --xd-p-critical: #ef4444;
+  --xd-p-off: #e1e4ea;
+
+  --xd-star: #eab308;
+  --xd-ai: #f87171;
+  --xd-ai-red: #ff4f4f;
+  --xd-ai-1: #ffb3b3;
+  --xd-ai-2: #ffcece;
+  --xd-ai-dot: #ff9b9b;
+  --xd-ai-bg: #fff5f5;
+  --xd-violet: #7c3aed;
+  --xd-violet-bg: #f3e8ff;
+  --xd-amber: #b45309;
+  --xd-amber-bg: #fef3c7;
+
+  --xd-red-50: #fef2f2;
+  --xd-red-100: #fee2e2;
+  --xd-red-500: #ef4444;
+  --xd-orange-50: #fff7ed;
+  --xd-orange-100: #ffedd5;
+  --xd-orange-600: #ea580c;
+  --xd-amber-50: #fffbeb;
+  --xd-amber-100: #fef3c7;
+  --xd-amber-600: #d97706;
+  --xd-blue-100: #dbeafe;
+  --xd-blue-700: #1d4ed8;
+  --xd-emerald-100: #d1fae5;
+  --xd-emerald-700: #047857;
+  --xd-lime-100: #ecfccb;
+  --xd-lime-700: #4d7c0f;
+  --xd-inbox-dot: #3b82f6;
+  --xd-spam-dot: #f97316;
+  --xd-scrim: rgba(14, 18, 27, 0.4);
+
+  --xd-radius: 10px;
+  --xd-shadow: 0 4px 16px rgba(14, 18, 27, 0.08), 0 1px 3px rgba(14, 18, 27, 0.06);
+
+  color: var(--xd-fg);
+  background: var(--xd-surface);
+  font-family: var(--font-sans);
+}
+
+/* Visually hidden, still read aloud. It is absolutely positioned, so whatever
+   holds it must be positioned too: with no positioned ancestor its containing
+   block is the page itself, which no scroll pane can clip — and one hidden
+   label per row of a scrolled list is enough to stretch the document far below
+   the desk. `.priority` below is its anchor. */
+.srOnly {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ── Priority ─────────────────────────────────────────────────────── */
+.priority { position: relative; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--xd-fg-2); }
+.barOff { fill: var(--xd-p-off); }
+.p_low .barOn { fill: var(--xd-p-low); }
+.p_medium .barOn { fill: var(--xd-p-medium); }
+.p_high .barOn { fill: var(--xd-p-high); }
+.pCritical { color: var(--xd-p-critical); }
+
+/* ── Stage ────────────────────────────────────────────────────────── */
+.k_todo { color: var(--xd-status-new); }
+.k_started { color: var(--xd-status-scheduled); }
+.k_paused { color: var(--xd-status-paused); }
+.k_completed { color: var(--xd-status-success); }
+
+.stage {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  border-radius: 6px;
+  background: var(--xd-muted);
+  padding: 2px 8px;
+  font-size: 12px;
+  color: var(--xd-fg-2);
+  white-space: nowrap;
+}
+.stageText { overflow: hidden; text-overflow: ellipsis; }
+
+/* ── Avatar ───────────────────────────────────────────────────────── */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border-radius: 999px;
+  color: var(--xd-on-primary);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.xs { width: 18px; height: 18px; font-size: 8.5px; }
+.sm { width: 22px; height: 22px; font-size: 9.5px; }
+.md { width: 32px; height: 32px; font-size: 12px; }
+
+/* ── Source badge ─────────────────────────────────────────────────── */
+.source {
+  flex: none;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+  background: var(--xd-muted);
+  color: var(--xd-fg-3);
+}
+.s_Mailbox { background: var(--xd-blue-100); color: var(--xd-blue-700); }
+.s_App { background: var(--xd-emerald-100); color: var(--xd-emerald-700); }
+.s_Call { background: var(--xd-lime-100); color: var(--xd-lime-700); }
+
+/* ── SLA badge ────────────────────────────────────────────────────── */
+.sla {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--xd-border);
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--xd-fg-3);
+  white-space: nowrap;
+}
+.sla_breached { background: var(--xd-red-50); border-color: var(--xd-red-100); color: var(--xd-red-500); }
+.sla_soon { background: var(--xd-orange-50); border-color: var(--xd-orange-100); color: var(--xd-orange-600); }
+.sla_warn { background: var(--xd-amber-50); border-color: var(--xd-amber-100); color: var(--xd-amber-600); }
+
+/* ── Labels ───────────────────────────────────────────────────────── */
+.labelChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--xd-border);
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 11.5px;
+  color: var(--xd-fg-2);
+  background: var(--xd-surface);
+  white-space: nowrap;
+}
+.labelDot { width: 7px; height: 7px; border-radius: 999px; flex: none; }
+.chipX {
+  appearance: none;
+  display: inline-flex;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--xd-fg-3);
+  cursor: pointer;
+}
+.chipX:hover { color: var(--xd-fg); }
+
+/* ── AI mark ──────────────────────────────────────────────────────── */
+.aiMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--xd-ai);
+  color: var(--xd-on-primary);
+  flex: none;
+}
+
+/* ── Powered by Xyne Desk ─────────────────────────────────────────── */
+.powered {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  color: var(--xd-fg-3);
+}
+.poweredBy { font-weight: 500; }
+.xyneLogo { height: 9px; width: auto; display: block; }
+.poweredCompact { gap: 4px; font-size: 10px; }
+.poweredCompact .xyneLogo { height: 8px; }
+
+/* ── Popover menu ─────────────────────────────────────────────────── */
+.popWrap { position: relative; display: inline-flex; }
+
+.pop {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: var(--z-drawer);
+  min-width: 200px;
+  max-height: 360px;
+  overflow-y: auto;
+  border: 1px solid var(--xd-border);
+  border-radius: 12px;
+  background: var(--xd-surface);
+  box-shadow: var(--xd-shadow);
+  padding: 4px;
+}
+.popRight { left: auto; right: 0; }
+.popUp { top: auto; bottom: calc(100% + 6px); }
+
+.menuLabel {
+  padding: 8px 8px 4px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--xd-fg-3);
+}
+
+.menuItem {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  padding: 7px 8px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--xd-fg);
+  text-align: left;
+  cursor: pointer;
+}
+.menuItem:hover { background: var(--xd-hover); }
+.menuItem:focus-visible { outline: 2px solid var(--xd-accent); outline-offset: -2px; }
+.menuDanger { color: var(--xd-destructive); }
+.menuIcon { color: var(--xd-fg-3); flex: none; }
+.menuDanger .menuIcon { color: var(--xd-destructive); }
+.menuText { display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1; }
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex: none;
+  border: 1px solid var(--xd-border-strong);
+  border-radius: 4px;
+  background: var(--xd-surface);
+  color: var(--xd-on-primary);
+}
+.checkOn { background: var(--xd-accent); border-color: var(--xd-accent); }

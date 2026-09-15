@@ -1,0 +1,107 @@
+.wrap { display: flex; flex-direction: column; gap: var(--s-4); }
+
+/* Positioning context for the tooltip, which is HTML over the SVG rather than
+   SVG text — it needs to wrap, and it needs the app's own type. */
+.plot { position: relative; width: 100%; }
+
+.svg { display: block; overflow: visible; }
+
+.grid { stroke: var(--c-border); stroke-width: 1; }
+
+.crosshair {
+  stroke: var(--c-border-mid4);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.axis {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--c-text-muted);
+}
+
+/* ── Tooltip ───────────────────────────────────────────────────────── */
+
+.tip {
+  position: absolute;
+  top: 8px;
+  min-width: 186px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border-mid2);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-md);
+  padding: 9px 11px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tipHead {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--c-text-muted);
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.tipRow {
+  display: grid;
+  grid-template-columns: 9px 1fr auto auto;
+  align-items: center;
+  gap: 7px;
+  padding: 2px 0;
+}
+
+.tipDot { width: 9px; height: 9px; border-radius: 50%; }
+
+.tipName {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-text);
+  white-space: nowrap;
+}
+
+.tipVal {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The denominator travels with the figure, so a reader can see when a rate is
+   resting on a small sample. */
+.tipN {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--c-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Legend ────────────────────────────────────────────────────────── */
+
+/* Identity is never colour alone — every line is named here with its own
+   quarter figure beside it. */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-5);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--c-border);
+}
+
+.legItem { display: inline-flex; align-items: center; gap: 7px; }
+
+.legDot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+
+.legName { font-size: 12px; font-weight: 500; color: var(--c-text); }
+
+.legVal {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-text-muted);
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,454 @@
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--c-ok-border);
+  background: var(--c-ok-bg);
+  padding: 18px 20px;
+}
+
+.check {
+  width: 22px;
+  height: 22px;
+  background: var(--c-ok);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bText { min-width: 0; }
+.bTitle { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+.bSub { font-size: 13px; font-weight: 500; color: var(--c-text-2); margin-top: 3px; }
+
+.handOff {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-ok);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 26px;
+  border-top: 1px solid var(--c-border);
+}
+
+.left {
+  padding: 20px 24px 20px 0;
+  border-right: 1px solid var(--c-border-mid3);
+}
+.right { padding: 20px 0 20px 24px; }
+
+.kick {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+.row {
+  display: grid;
+  grid-template-columns: .8fr 1.5fr;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--c-border-mid3);
+}
+.k {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+.v { font-size: 13.5px; font-weight: 500; line-height: 1.45; }
+
+.trail {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+.trailRow {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 14px;
+  padding: 0 0 18px;
+}
+.trailAxis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.trailDot {
+  width: 10px;
+  height: 10px;
+  background: var(--c-brand);
+  margin-top: 5px;
+}
+.trailLine {
+  width: 1px;
+  flex: 1;
+  background: var(--c-border-mid);
+}
+.trailK { font-size: 13.5px; font-weight: 700; }
+.trailV {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 3px;
+}
+
+.measure {
+  border: 1px solid var(--c-border-mid);
+  padding: 14px 16px;
+  margin-top: 8px;
+}
+.measureText { font-size: 13px; font-weight: 500; line-height: 1.55; margin-top: 6px; }
+
+
+/* ── Portfolio strip ──────────────────────────────────── */
+.portfolioBar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 14px 18px;
+  border-radius: var(--r-md);
+  background: linear-gradient(100deg, var(--c-ok) 0%, var(--c-ok) 100%);
+  color: #fff;
+}
+.pIcon {
+  display: grid;
+  place-items: center;
+  width: 32px; height: 32px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, .22);
+  font-size: 15px;
+}
+.pTitle { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+.pSub { font-size: 12px; font-weight: 500; opacity: .85; margin-top: 2px; }
+
+/* ── Section heads ────────────────────────────────────── */
+.sectHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+.sectTag {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-brand-dark);
+  background: var(--c-brand-soft);
+  border-radius: var(--r-pill);
+  padding: 3px 9px;
+}
+
+/* ── Parallel campaigns ───────────────────────────────── */
+.campaigns { display: flex; flex-direction: column; gap: 6px; }
+.campaign {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 84px;
+  gap: 18px;
+  align-items: center;
+  padding: 11px 16px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+}
+.campaignOn { border-color: var(--c-brand); box-shadow: inset 0 0 0 1px var(--c-brand-line); }
+.cName { font-size: 13.5px; font-weight: 600; color: var(--c-text); }
+.cMeta { font-size: 11.5px; font-weight: 500; color: var(--c-text-muted); margin-top: 2px; }
+.cProfit { text-align: right; }
+.cProfitV { font-size: 16px; font-weight: 600; color: var(--c-brand-dark); font-variant-numeric: tabular-nums; }
+.cProfitK {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.state {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: var(--r-pill);
+  padding: 5px 0;
+}
+.stateViewing { color: var(--c-brand-dark); background: var(--c-brand-soft); }
+.stateOk      { color: var(--c-ok);         background: var(--c-ok-bg-3); }
+.stateRisk    { color: var(--c-warn);       background: var(--c-warn-bg); }
+
+/* ── Detail: performance beside channel telemetry ─────── */
+.detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+.card {
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  padding: 14px 16px 16px;
+}
+.cardKick {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.stat { min-width: 0; }
+.statK {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+.statV {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-text);
+}
+.tone_ok { color: var(--c-ok); }
+.statTrack {
+  height: 4px;
+  border-radius: var(--r-pill);
+  background: var(--c-surface-hi5);
+  overflow: hidden;
+  margin-top: 10px;
+}
+.statFill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, var(--c-brand-dark), var(--c-brand-fade));
+}
+.statOf { font-size: 11px; font-weight: 500; color: var(--c-text-mute-2); margin-top: 7px; }
+
+/* ── Profit against target ────────────────────────────── */
+.profitBox {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--c-border-mid6);
+}
+.profitTop { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.profitK {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+.profitV { font-size: 20px; font-weight: 700; color: var(--c-ok); font-variant-numeric: tabular-nums; }
+.profitTarget { font-size: 15px; font-weight: 500; color: var(--c-text-mute-2); }
+.profitTrack {
+  position: relative;
+  height: 9px;
+  border-radius: var(--r-pill);
+  background: var(--c-surface-hi5);
+  overflow: hidden;
+  margin-top: 12px;
+}
+.profitFill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, var(--c-ok), var(--c-ok));
+  transition: width var(--dur-slow) var(--easing-out);
+}
+/* Where the campaign should be, given how far the window has run. */
+.pace {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: var(--c-text-3);
+  opacity: .45;
+}
+.profitNote { font-size: 11.5px; font-weight: 500; color: var(--c-text-muted); margin-top: 9px; }
+
+/* ── Channel table ────────────────────────────────────── */
+.chTable { border-radius: var(--r-sm); overflow: hidden; }
+.chHead, .chRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) repeat(5, minmax(0, 0.72fr));
+  gap: 8px;
+  align-items: center;
+  padding: 9px 10px;
+}
+.chHead {
+  background: var(--c-surface-hi2);
+  border-bottom: 1px solid var(--c-border-mid3);
+  font-family: var(--font-mono);
+  font-size: var(--th-size);
+  font-weight: var(--th-weight);
+  letter-spacing: var(--th-track);
+  color: var(--th-color);
+  text-transform: uppercase;
+}
+.chRow {
+  border-bottom: 1px solid var(--c-border-mid6);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-text-3);
+  font-variant-numeric: tabular-nums;
+}
+.chRow:last-child { border-bottom: 0; }
+.chUnder { background: var(--c-danger-soft); }
+.chName { display: flex; align-items: center; gap: 6px; font-weight: 600; color: var(--c-text); min-width: 0; }
+.underTag {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--c-danger);
+  background: var(--c-danger-bg);
+  border-radius: var(--r-pill);
+  padding: 2px 8px;
+}
+.movedTag {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--c-ok);
+  background: var(--c-ok-bg-3);
+  border-radius: var(--r-pill);
+  padding: 2px 8px;
+}
+.rateOk { color: var(--c-ok); font-weight: 600; }
+.rateBad { color: var(--c-danger); font-weight: 600; }
+
+/* ── Course correction ────────────────────────────────── */
+.alert {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+  padding: 18px 20px;
+  border: 1px solid var(--c-danger-line);
+  border-radius: var(--r-lg);
+  background: var(--c-danger-soft);
+}
+.alertIcon {
+  display: grid;
+  place-items: center;
+  width: 34px; height: 34px;
+  border-radius: var(--r-sm);
+  background: var(--c-danger);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+}
+.alertBody { min-width: 0; }
+.alertTitle { font-size: 15px; font-weight: 600; color: var(--c-danger); }
+.alertText { font-size: 13px; font-weight: 500; line-height: 1.6; color: var(--c-text-3); margin-top: 5px; }
+.alertText b { font-weight: 600; color: var(--c-text); }
+
+.fixBox {
+  margin: 14px 0;
+  padding: 14px 16px;
+  border: 1px solid var(--c-danger-line);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+}
+.fixKick {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-danger);
+  text-transform: uppercase;
+}
+.fixTitle { font-size: 14px; font-weight: 600; color: var(--c-text); margin-top: 6px; }
+.fixText { font-size: 12.5px; font-weight: 500; line-height: 1.6; color: var(--c-text-4); margin-top: 6px; }
+.fixText b { font-weight: 600; color: var(--c-ok); }
+
+.applied {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 20px;
+  padding: 16px 20px;
+  border: 1px solid var(--c-ok-border);
+  border-radius: var(--r-lg);
+  background: var(--c-ok-bg);
+  animation: stepIn .3s var(--easing-out) both;
+}
+.appliedIcon {
+  display: grid;
+  place-items: center;
+  width: 30px; height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--c-ok);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.appliedTitle { font-size: 14.5px; font-weight: 600; color: var(--c-ok); }
+.appliedText { font-size: 12.5px; font-weight: 500; line-height: 1.6; color: var(--c-text-3); margin-top: 4px; }
+.appliedText b { font-weight: 600; color: var(--c-ok); }
+
+.trailDotNew { background: var(--c-ok) !important; }
+
+@media (max-width: 1240px) {
+  .detail { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .stats { grid-template-columns: 1fr; }
+}
+
+/* Each leg of a paired campaign is its own running push, so the row that
+   selects one has to be a control rather than a static card. */
+.campaignBtn {
+  appearance: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.campaignBtn:focus-visible { outline: 2px solid var(--c-brand); outline-offset: -2px; }

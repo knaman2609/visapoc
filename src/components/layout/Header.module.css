@@ -1,0 +1,154 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-6);
+  padding: 0 var(--s-10);
+  height: var(--header-h);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-border);
+  flex: none;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--c-text);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+}
+
+.stamp {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-text-muted);
+}
+
+.userText {
+  text-align: right;
+}
+
+.userName {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.userRole {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  line-height: 1.3;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-md);
+  background: var(--c-brand-tint);
+  color: var(--c-brand-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* ── Profile menu ─────────────────────────────────────────────────── */
+/* With the front door gone this is the only way across to the other
+   console, so the profile is a control rather than a label. */
+.profile { position: relative; }
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: var(--r-button);
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  padding: 5px 8px 5px 10px;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out);
+}
+.user:hover { background: var(--c-hover-blue); border-color: var(--c-border); }
+.user:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 1px; }
+
+.chev {
+  color: var(--c-text-muted);
+  transition: transform var(--dur-fast) var(--easing-out);
+  flex: none;
+}
+.chevOpen { transform: rotate(180deg); }
+
+.menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 288px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--s-2);
+  z-index: var(--z-header);
+  animation: drawerIn .16s var(--easing-out) both;
+}
+
+.menuLabel {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  padding: 6px 10px 4px;
+}
+
+.menuItem {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  width: 100%;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: none;
+  font-family: inherit;
+  color: var(--c-text);
+  text-align: left;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out);
+}
+.menuItem:hover { background: var(--c-hover-blue); }
+.menuItem:focus-visible { outline: 2px solid var(--c-brand); outline-offset: -2px; }
+.menuOn { color: var(--c-brand-dark); }
+
+.menuText { min-width: 0; }
+.menuName { font-size: 13px; font-weight: 600; line-height: 1.3; }
+.menuWho {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  line-height: 1.35;
+  margin-top: 1px;
+}

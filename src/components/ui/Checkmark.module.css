@@ -1,0 +1,17 @@
+.check {
+  background: var(--c-brand);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-sizing: border-box;
+}
+
+.xs { width: 12px; height: 12px; font-size: 8px; font-weight: 800; }
+.sm { width: 14px; height: 14px; font-size: 9px; font-weight: 800; }
+.md { width: 16px; height: 16px; font-size: 10px; font-weight: 800; }
+.lg { width: 22px; height: 22px; font-size: 12px; font-weight: 800; }
+
+.ok { background: var(--c-ok); }
+.blueBg { background: var(--c-brand-fade); color: var(--c-text-3); }

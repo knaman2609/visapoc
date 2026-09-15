@@ -1,0 +1,506 @@
+/* ── Gmail ─────────────────────────────────────────────────────────────
+   Google's own values, not this app's: Roboto, #1f1f1f ink, #5f6368
+   secondary, #0b57d0 action, #c2e7ff on the compose button, #f2f6fc on a
+   read row. The point of a client mock is that it is recognisably not the
+   tool it is drawn in, so nothing here reads a console token. */
+.gApp, .web {
+  --g-font: Roboto, "Helvetica Neue", Arial, system-ui, sans-serif;
+  --g-ink: #1f1f1f;
+  --g-dim: #5f6368;
+  --g-line: #e3e3e3;
+  --g-blue: #0b57d0;
+  --g-surface: #fff;
+  --g-tonal: #c2e7ff;
+  --g-sel: #d3e3fd;
+  font-family: var(--g-font);
+}
+
+.gDark, .webDark {
+  --g-ink: #e3e3e3;
+  --g-dim: #9aa0a6;
+  --g-line: #333438;
+  --g-blue: #a8c7fa;
+  --g-surface: #1f1f1f;
+  --g-tonal: #004a77;
+  --g-sel: #004a77;
+}
+
+.gApp {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--g-surface);
+  color: var(--g-ink);
+}
+
+/* The floating search bar, which is the whole top chrome on Gmail for iOS. */
+.gSearch {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 8px 6px;
+  padding: 0 12px;
+  height: 48px;
+  border-radius: 999px;
+  background: #f0f4f9;
+  color: var(--g-dim);
+}
+.gDark .gSearch { background: #2d2f31; }
+.gSearchText { flex: 1; font-size: 15px; color: var(--g-dim); }
+.gMe {
+  display: grid;
+  place-items: center;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: #7b4ea8;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  flex: none;
+}
+
+.gTabs {
+  flex: none;
+  display: flex;
+  border-bottom: 1px solid var(--g-line);
+}
+.gTab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 0 11px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--g-dim);
+  white-space: nowrap;
+}
+.gTabOn {
+  color: var(--g-blue);
+  box-shadow: inset 0 -3px 0 var(--g-blue);
+}
+
+.gList { flex: 1; min-height: 0; overflow: hidden; }
+
+/* Row: avatar, three lines, star. 40px avatar and a 15/14/14 type ramp is
+   what Gmail actually draws, and it is why a subject gets ~33 characters. */
+.gRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 12px 12px 14px;
+  border-bottom: 1px solid var(--g-line);
+}
+.gAvatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: var(--g-font);
+}
+.gMain { flex: 1; min-width: 0; display: block; }
+.gTop {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--g-dim);
+}
+.gTop b { flex: 1; min-width: 0; font-weight: 400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gTop i { font-style: normal; font-size: 12px; flex: none; }
+.gUnread .gTop b { font-weight: 700; color: var(--g-ink); }
+.gUnread .gTop i { font-weight: 700; color: var(--g-ink); }
+.gSubject {
+  display: block;
+  margin-top: 1px;
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--g-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.gUnread .gSubject { font-weight: 700; color: var(--g-ink); }
+.gSnippet {
+  display: block;
+  margin-top: 1px;
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: var(--g-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.gNoPre { font-style: italic; opacity: .75; }
+.gStar { flex: none; margin-top: 26px; color: #9aa0a6; }
+.gNow { color: var(--g-blue) !important; }
+
+/* The row being designed, marked without changing what Gmail would draw. */
+.gOurs { box-shadow: inset 3px 0 0 var(--c-brand); }
+
+/* Extended FAB, Material 3. */
+.gFab {
+  position: absolute;
+  right: 14px;
+  bottom: 74px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: 52px;
+  padding: 0 18px;
+  border-radius: 16px;
+  background: var(--g-tonal);
+  color: #001d35;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2), 0 4px 8px 3px rgba(0,0,0,.12);
+}
+.gDark .gFab { color: #c2e7ff; }
+
+.gNav {
+  flex: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0 22px;
+  border-top: 1px solid var(--g-line);
+  background: var(--g-surface);
+}
+.gNavItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--g-dim);
+}
+.gNavPill {
+  display: grid;
+  place-items: center;
+  width: 60px; height: 30px;
+  border-radius: 999px;
+}
+.gNavOn { color: var(--g-ink); }
+.gNavOn .gNavPill { background: var(--g-sel); color: var(--g-blue); }
+
+/* ── Gmail, message open ───────────────────────────────────────────── */
+.gOpenBar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 6px 14px 10px;
+  color: var(--g-dim);
+}
+.gOpenTools { margin-left: auto; display: flex; gap: 18px; }
+.gOpenScroll { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
+.gOpenHead { padding: 4px 16px 10px; }
+.gOpenSubject {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--g-ink);
+  letter-spacing: -0.005em;
+}
+.gLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 9px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #e8f0fe;
+  color: #185abc;
+  font-size: 11px;
+  font-weight: 500;
+}
+.gDark .gLabel { background: #37393b; color: #a8c7fa; }
+
+.gFrom {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 4px 16px 12px;
+}
+.gFromText { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.35; }
+.gFromText b { font-size: 14px; font-weight: 500; color: var(--g-ink); }
+.gFromText i {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-style: normal;
+  font-size: 12.5px;
+  color: var(--g-dim);
+}
+.gFromRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--g-dim);
+  flex: none;
+}
+.gBody { flex: 1; min-height: 0; overflow: hidden; }
+.gReplies {
+  flex: none;
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px 16px;
+}
+.gReply {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--g-line);
+  border-radius: 999px;
+  font-size: 12.5px;
+  color: var(--g-dim);
+}
+
+/* ── Gmail on the desktop ──────────────────────────────────────────── */
+.web {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f8fafd;
+  color: var(--g-ink);
+}
+.webDark { background: #1f1f1f; }
+
+.webBar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 56px;
+  padding: 0 16px;
+}
+.webIcon { color: var(--g-dim); }
+.webLogo { display: flex; align-items: center; gap: 7px; }
+.webLogo b { font-size: 19px; font-weight: 400; color: #5f6368; letter-spacing: -0.01em; }
+.webDark .webLogo b { color: #c4c7c5; }
+.webSearch {
+  flex: 1;
+  max-width: 620px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background: #eaf1fb;
+  color: var(--g-dim);
+}
+.webDark .webSearch { background: #303134; }
+.webSearch i { flex: 1; font-style: normal; font-size: 13.5px; }
+.webBarRight { margin-left: auto; display: flex; align-items: center; gap: 14px; color: var(--g-dim); }
+
+.webBody { flex: 1; min-height: 0; display: grid; grid-template-columns: 208px minmax(0, 1fr); }
+/* Reading pane below the inbox — Gmail's own setting, and the one that lets
+   the list run full width so the real subject cut is visible. */
+.webMain { min-width: 0; display: flex; flex-direction: column; overflow: hidden; }
+
+.webRail { padding: 0 8px 0 6px; }
+.webCompose {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  margin: 0 0 14px 6px;
+  padding: 0 20px 0 16px;
+  border-radius: 16px;
+  background: var(--g-tonal);
+  color: #001d35;
+  font-size: 13.5px;
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(60,64,67,.3);
+}
+.webDark .webCompose { color: #c2e7ff; }
+.webNav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 32px;
+  padding: 0 12px 0 20px;
+  border-radius: 0 999px 999px 0;
+  font-size: 13px;
+  color: var(--g-ink);
+}
+.webNav i { margin-left: auto; font-style: normal; font-size: 11.5px; }
+.webNavOn { background: var(--g-sel); color: var(--g-blue); font-weight: 700; }
+.webDark .webNavOn { color: #c2e7ff; }
+
+.webList {
+  min-width: 0;
+  border-radius: 14px 0 0 0;
+  background: var(--g-surface);
+  overflow: hidden;
+  border-right: 1px solid var(--g-line);
+}
+.webTabs { display: flex; border-bottom: 1px solid var(--g-line); }
+.webTab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px 11px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--g-dim);
+}
+.webTabOn { color: var(--g-blue); box-shadow: inset 0 -3px 0 var(--g-blue); }
+
+.webRow {
+  display: grid;
+  grid-template-columns: 16px 150px minmax(0, 1fr) 62px;
+  gap: 9px;
+  align-items: center;
+  height: 38px;
+  padding: 0 10px;
+  border-bottom: 1px solid var(--g-line);
+  font-size: 12.5px;
+  color: var(--g-ink);
+}
+.webRow b { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.webSubject { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
+.webSubject i { font-style: normal; font-weight: 400; color: var(--g-dim); }
+.webRow em { font-style: normal; text-align: right; font-size: 11px; font-weight: 700; }
+.webStar { color: #c4c7c5; }
+/* Gmail tints a row that has been read; unread rows stay white and bold. */
+.webRead { background: #f2f6fc; }
+.webRead b, .webRead .webSubject, .webRead em { font-weight: 400; color: var(--g-dim); }
+.webDark .webRead { background: #2a2a2a; }
+.webRowOn { box-shadow: inset 3px 0 0 var(--c-brand); }
+
+.webPane {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--g-surface);
+  border-top: 10px solid #f8fafd;
+  overflow: hidden;
+}
+.webDark .webPane { border-top-color: #131314; }
+.webPaneHead { flex: none; padding: 16px 22px 6px; }
+.webPaneHead h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--g-ink);
+}
+.webPaneFrom {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 22px 14px;
+}
+.webPaneFrom .gAvatar { width: 34px; height: 34px; font-size: 15px; }
+.webFromText { display: flex; align-items: baseline; gap: 6px; min-width: 0; overflow: hidden; }
+.webFromText b { flex: none; font-size: 13px; font-weight: 700; white-space: nowrap; }
+.webFromText i {
+  min-width: 0;
+  font-style: normal;
+  font-size: 11.5px;
+  color: var(--g-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.webPaneFrom em { margin-left: auto; font-style: normal; font-size: 11.5px; color: var(--g-dim); flex: none; }
+.webPaneBody {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 12px;
+  background: var(--g-surface);
+}
+
+/* ── Apple Mail ────────────────────────────────────────────────────────
+   iOS system values: the 0.94-alpha bar with a hairline under it, #007AFF
+   for anything tappable, SF for everything. */
+.am {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  font-family: var(--font-ios);
+}
+.amNav {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 4px 12px 9px;
+  background: rgba(249, 249, 249, .94);
+  border-bottom: 1px solid #d8d8dc;
+}
+.amBack {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  font-size: 16px;
+  color: #007aff;
+}
+.amNavRight { margin-left: auto; display: flex; gap: 16px; color: #007aff; }
+.amScroll { flex: 1; min-height: 0; overflow: hidden; }
+.amFrom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px 8px;
+}
+.amAvatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: #1434cb;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+.amFromText { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.3; }
+.amFromText b { font-size: 16px; font-weight: 600; color: #000; letter-spacing: -0.01em; }
+.amFromText i {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-style: normal;
+  font-size: 14px;
+  color: #8e8e93;
+}
+.amFrom em { font-style: normal; font-size: 13px; color: #8e8e93; flex: none; }
+.amSubject {
+  margin: 0;
+  padding: 4px 16px 8px;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -0.015em;
+  color: #000;
+  border-bottom: 1px solid #e5e5ea;
+}
+.amBody { }
+.amBottom {
+  flex: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 20px 26px;
+  background: rgba(249, 249, 249, .94);
+  border-top: 1px solid #d8d8dc;
+  color: #007aff;
+}

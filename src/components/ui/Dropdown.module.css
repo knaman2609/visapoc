@@ -1,0 +1,97 @@
+.wrap { position: relative; display: inline-flex; align-items: center; gap: 10px; }
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 190px;
+  appearance: none;
+  border: 1px solid var(--c-border-mid4);
+  border-radius: var(--r-button);
+  background: var(--c-surface);
+  padding: 9px 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-2);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--easing-out),
+              background var(--dur-fast) var(--easing-out);
+}
+.trigger:hover { background: var(--c-hover-blue); border-color: var(--c-brand-line); }
+.trigger:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 2px; }
+.triggerOpen { border-color: var(--c-brand); background: var(--c-surface); }
+
+.value { flex: 1; text-align: left; }
+.caret {
+  font-size: 10px;
+  color: var(--c-text-muted);
+  transition: transform var(--dur-fast) var(--easing-out);
+}
+.caretOpen { transform: rotate(180deg); color: var(--c-brand); }
+
+.list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 20;
+  min-width: 240px;
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-lg);
+  animation: stepIn .16s var(--easing-out) both;
+}
+.right { left: auto; right: 0; }
+
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  appearance: none;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  padding: 8px 10px;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.option:hover { background: var(--c-surface-hi3); }
+.option:focus-visible { outline: 2px solid var(--c-brand); outline-offset: -2px; }
+.optionOn { background: var(--c-brand-soft); }
+
+.optLabel { font-size: 13px; font-weight: 600; color: var(--c-text-2); }
+.optionOn .optLabel { color: var(--c-brand-dark); }
+.optSub { font-size: 11px; font-weight: 500; color: var(--c-text-mute-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .list { animation: none; }
+  .caret { transition: none; }
+}
+
+/* Optional per-option icon. Optically centred against the label's cap height
+   rather than its line box, which sits a touch low on a 13px trigger. */
+.triggerIcon,
+.optIcon {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  color: var(--c-text-muted);
+}
+.triggerIcon { margin-right: 8px; }
+.optIcon { margin-right: 8px; position: relative; top: 0.5px; }
+.optionOn .optIcon { color: var(--c-brand); }

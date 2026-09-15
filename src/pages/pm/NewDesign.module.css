@@ -1,0 +1,265 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: var(--s-7) var(--s-8) var(--s-10);
+}
+
+.head { display: flex; align-items: flex-start; gap: var(--s-6); margin-bottom: var(--s-6); }
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+.title {
+  margin: 8px 0 0;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--c-text);
+}
+.note {
+  margin: 8px 0 0;
+  max-width: 68ch;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--c-text-muted);
+  text-wrap: pretty;
+}
+
+/* Which channel the tiles preview. The layouts cover all three; this only
+   changes which one you are looking at while choosing. */
+.chan {
+  flex: none;
+  margin-left: auto;
+  display: inline-flex;
+  border: 1px solid var(--c-border-mid4);
+  border-radius: var(--r-sm);
+  overflow: hidden;
+}
+.chanBtn {
+  appearance: none;
+  border: 0;
+  border-left: 1px solid var(--c-border-mid4);
+  background: transparent;
+  padding: 8px 14px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  cursor: pointer;
+}
+.chanBtn:first-child { border-left: 0; }
+.chanBtn:hover { color: var(--c-text-2); }
+.chanOn { background: var(--c-brand); color: var(--c-on-brand); font-weight: 600; }
+
+/* The picker lifts out of the page as a modal so the "New design" CTA stays
+   put behind it. Same furniture as the rest of the console's dialogs. */
+.scrim {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-w);
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-6);
+  background: var(--c-scrim);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  animation: fade 180ms var(--easing-out) both;
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 1080px;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: var(--r-2xl);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: rise 220ms var(--easing-out) both;
+}
+
+.panelHead {
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-4);
+  padding: var(--s-6) var(--s-6) var(--s-4);
+  border-bottom: 1px solid var(--c-border-mid3);
+}
+.panelTitle {
+  margin: 6px 0 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--c-text);
+}
+.panelNote {
+  margin: 6px 0 0;
+  max-width: 66ch;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--c-text-muted);
+  text-wrap: pretty;
+}
+.close {
+  appearance: none;
+  align-self: flex-start;
+  display: grid;
+  place-items: center;
+  width: 30px; height: 30px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--c-text-muted);
+  cursor: pointer;
+}
+.close:hover { background: var(--c-surface-hi5); color: var(--c-text-2); }
+
+.grid {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--s-4);
+  padding: var(--s-5) var(--s-6) var(--s-6);
+}
+
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rise { from { opacity: 0; transform: translateY(8px) scale(.99); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .scrim, .panel { animation: none; }
+}
+
+.card {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--c-border-mid3);
+  border-radius: var(--r-lg);
+  background: var(--c-surface);
+  padding: 0;
+  overflow: hidden;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 150ms var(--easing-out), box-shadow 150ms var(--easing-out);
+}
+.card:hover { border-color: var(--c-brand-line); box-shadow: var(--shadow-sm); }
+
+.thumb { display: block; border-bottom: 1px solid var(--c-border-mid3); background: var(--c-surface-hi3); }
+.thumb > * { width: 100% !important; border-radius: 0; box-shadow: none; }
+
+/* Blank sits first and reads as an action rather than as a preview. */
+.blank { border-style: dashed; }
+.blankArt {
+  display: grid;
+  place-items: center;
+  height: 164px;
+  border-bottom: 1px solid var(--c-border-mid3);
+  background: var(--c-surface-hi3);
+  color: var(--c-brand);
+}
+
+.body { display: block; padding: var(--s-4); }
+.name {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+}
+.name i {
+  margin-left: auto;
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--c-text-soft);
+}
+.use {
+  display: block;
+  margin-top: 6px;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--c-text-muted);
+  text-wrap: pretty;
+}
+
+.lift { display: flex; gap: var(--s-4); margin-top: 12px; }
+.lift span { font-size: 9.5px; color: var(--c-text-soft); }
+.lift b {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--c-text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.covers { display: flex; gap: 4px; margin-top: 12px; }
+.covers i {
+  font-style: normal;
+  border-radius: 3px;
+  background: var(--c-surface-hi5);
+  padding: 2px 7px;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+}
+
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+
+/* ── The one thing you came here to do ─────────────────────────────────
+   The layouts are worth choosing between, but only once you have said you
+   want one. Before that they are a catalogue in the way of a button. */
+.start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-14) var(--s-6);
+  border: 1px dashed var(--c-border-mid4);
+  border-radius: var(--r-2xl);
+  background: var(--c-surface-hi);
+}
+.startBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 0;
+  border-radius: var(--r-button);
+  background: var(--c-brand);
+  color: var(--c-on-brand);
+  padding: 14px 26px;
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  box-shadow: var(--shadow-brand);
+  transition: background 150ms var(--easing-out), transform 150ms var(--easing-out);
+}
+.startBtn:hover { background: var(--c-brand-bright); }
+.startBtn:active { transform: scale(.985); }
+.startNote { margin: 0; font-size: 12px; color: var(--c-text-muted); }
+
+@media (prefers-reduced-motion: reduce) { .startBtn { transition: none; } }

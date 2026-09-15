@@ -1,0 +1,61 @@
+/* Geometry and type from Nova's button component: semibold at 600, a touch of
+   positive tracking, and a 6px corner rather than the app's softer radius. */
+.btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.018em;
+  cursor: pointer;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: var(--r-button);
+  line-height: 1.2;
+}
+
+.primary {
+  background: var(--c-brand);
+  color: var(--c-on-brand);
+}
+/* Nova brightens on hover and darkens on press, not the reverse. */
+.primary:hover { background: var(--c-brand-bright); }
+.primary:active { background: var(--c-brand-dark); }
+
+.secondary {
+  border: 1px solid var(--c-border);
+  background: var(--c-surface);
+  color: var(--c-text-3);
+}
+.secondary:hover { background: var(--c-hover-blue); color: var(--c-brand-dark); }
+
+.outline {
+  border: 1px solid var(--c-brand-line);
+  background: var(--c-brand-tint);
+  color: var(--c-brand-dark);
+}
+.outline:hover { background: var(--c-brand-hover); }
+.outline:active { background: var(--c-brand-alt); }
+
+.ghost {
+  background: transparent;
+  color: var(--c-text-muted);
+  padding: 10px 8px;
+  border-radius: 0;
+}
+.ghost:hover { color: var(--c-text-3); }
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.btn:disabled:hover { background: inherit; }
+.primary:disabled:hover { background: var(--c-brand); }
+
+.block { width: 100%; }
+
+.sm { padding: 8px 12px; font-size: 12px; }
+.md { padding: 10px 14px; font-size: 13px; }
+.lg { padding: 12px 18px; font-size: 13.5px; }
+.xl { padding: 14px 22px; font-size: 14px; }

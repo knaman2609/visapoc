@@ -1,0 +1,467 @@
+/* ── The iOS notification card ─────────────────────────────────────────
+   Material rather than a flat white: 14% white over a blur is what the
+   system actually draws on a lock screen, and it is why a notification reads
+   as floating rather than as a box. 20px radius, 38pt icon, SF throughout. */
+.card {
+  position: relative;
+  display: flex;
+  gap: 11px;
+  border-radius: 20px;
+  padding: 11px 13px 12px;
+  font-family: var(--font-ios);
+  color: #fff;
+}
+.glass {
+  background: rgba(255, 255, 255, .16);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
+}
+/* Over a home screen the system uses the light material, not the dark one. */
+.sheet {
+  background: rgba(250, 250, 250, .84);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  color: #000;
+  box-shadow: 0 8px 24px -8px rgba(10, 12, 20, .38), inset 0 0 0 .5px rgba(0, 0, 0, .06);
+}
+.sheetDark {
+  background: rgba(44, 44, 46, .84);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  color: #fff;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, .6), inset 0 0 0 .5px rgba(255, 255, 255, .08);
+}
+.cardSm { padding: 9px 11px 10px; border-radius: 17px; }
+
+.cardIcon { flex: none; }
+.cardText { flex: 1; min-width: 0; display: block; }
+.cardTop { display: flex; align-items: baseline; gap: 8px; }
+.cardTop b {
+  flex: 1;
+  min-width: 0;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.28;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cardTop i {
+  flex: none;
+  font-style: normal;
+  font-size: 12.5px;
+  opacity: .58;
+}
+.cardSub {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 1px;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.3;
+}
+.cardBody {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 1px;
+  font-size: 14.5px;
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  opacity: .92;
+  white-space: pre-wrap;
+}
+.cardSm .cardTop b, .cardSm .cardSub, .cardSm .cardBody { font-size: 13px; }
+.cardSm .cardBody { -webkit-line-clamp: 2; }
+
+/* ── Lock screen ───────────────────────────────────────────────────── */
+.lock {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 12px 14px;
+  overflow: hidden;
+}
+.wall { position: absolute; inset: 0; background: linear-gradient(165deg, #1a2647 0%, #0b1020 55%, #140f24 100%); }
+.wallA, .wallB, .wallC { position: absolute; border-radius: 50%; filter: blur(46px); }
+.wallA { width: 260px; height: 260px; top: -60px; left: -70px; background: rgba(70, 96, 200, .5); }
+.wallB { width: 220px; height: 220px; bottom: 120px; right: -70px; background: rgba(150, 70, 170, .34); }
+.wallC { width: 200px; height: 200px; bottom: -50px; left: 30px; background: rgba(30, 120, 160, .3); }
+
+.lockTop { position: relative; text-align: center; color: #fff; }
+.padlock { opacity: .72; margin-bottom: 6px; }
+.lockDate {
+  display: block;
+  font-family: var(--font-ios);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  opacity: .86;
+}
+.lockTime {
+  display: block;
+  font-family: var(--font-ios);
+  font-size: 74px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+  margin-top: -2px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, .28);
+}
+
+.lockWidgets {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 0 4px;
+}
+.widget {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 11px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .13);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  color: #fff;
+  font-family: var(--font-ios);
+}
+.widget b { font-size: 13px; font-weight: 600; }
+.widget i { font-style: normal; font-size: 10.5px; opacity: .68; }
+
+/* Notifications sit at the bottom of the screen on iOS 16 and later. */
+.lockStack { position: relative; margin-top: auto; padding-bottom: 4px; }
+.behind1, .behind2 {
+  position: absolute;
+  left: 0; right: 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .13);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.behind1 { top: -9px; height: 40px; transform: scale(.955); }
+.behind2 { top: -17px; height: 40px; transform: scale(.91); opacity: .7; }
+.stackCount {
+  display: block;
+  margin-top: 12px;
+  text-align: center;
+  font-family: var(--font-ios);
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, .62);
+}
+
+.lockBottom {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 30px 6px;
+}
+.lockBtn {
+  display: grid;
+  place-items: center;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #fff;
+}
+
+/* ── Home screen, for the banner ───────────────────────────────────── */
+.home {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 14px 14px;
+  overflow: hidden;
+}
+.homeWall {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(70% 50% at 20% 8%, rgba(120, 160, 255, .45), transparent 70%),
+    radial-gradient(60% 46% at 88% 76%, rgba(230, 130, 190, .38), transparent 70%),
+    linear-gradient(160deg, #2b3358, #1b2140 60%, #241d3c);
+}
+.homeDark .homeWall {
+  background:
+    radial-gradient(70% 50% at 20% 8%, rgba(60, 80, 140, .5), transparent 70%),
+    linear-gradient(160deg, #14161f, #0c0d14);
+}
+.bannerSlot { position: relative; padding: 4px 0 0; }
+
+.homeGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 12px;
+  margin-top: 22px;
+}
+.homeApp { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.homeApp i {
+  position: relative;
+  width: 58px; height: 58px;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .28);
+  /* A top-light gloss and an inner hairline is most of what separates an
+     iOS icon from a coloured square. */
+  background-image: linear-gradient(rgba(255, 255, 255, .22), rgba(255, 255, 255, 0) 46%, rgba(0, 0, 0, .14));
+  background-blend-mode: overlay;
+}
+.homeApp i::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .18);
+}
+.homeApp em {
+  font-style: normal;
+  font-family: var(--font-ios);
+  font-size: 10px;
+  color: rgba(255, 255, 255, .92);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .4);
+}
+
+.dots { position: relative; display: flex; justify-content: center; gap: 6px; margin-top: auto; padding: 14px 0 10px; }
+.dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, .38); }
+.dots i:first-child { background: rgba(255, 255, 255, .92); }
+
+.dock {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  padding: 11px 14px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, .18);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.dock span {
+  width: 56px; height: 56px;
+  border-radius: 13px;
+  background-image: linear-gradient(rgba(255, 255, 255, .22), rgba(255, 255, 255, 0) 46%, rgba(0, 0, 0, .14));
+  background-blend-mode: overlay;
+}
+
+/* ── Notification centre ───────────────────────────────────────────── */
+.centre {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 12px 14px;
+  overflow: hidden;
+}
+.centreScrim { position: absolute; inset: 0; background: rgba(0, 0, 0, .32); backdrop-filter: blur(4px); }
+.centreHead { position: relative; text-align: center; color: #fff; margin-bottom: 14px; }
+.centreDate { display: block; font-family: var(--font-ios); font-size: 13px; opacity: .7; }
+.centreTitle {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-ios);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.centreList { position: relative; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+.groupHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 4px 1px;
+  font-family: var(--font-ios);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .62);
+}
+
+/* ── Android shade, Material 3 ─────────────────────────────────────── */
+.shade {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 10px 14px;
+  overflow: hidden;
+  font-family: Roboto, var(--font-ios);
+}
+.shadeWall { position: absolute; inset: 0; background: linear-gradient(#22242a, #131418); }
+.shadeDark .shadeWall { background: #0b0c0f; }
+
+.qs { position: relative; padding: 8px 8px 14px; color: #e3e3e3; }
+.qsClock { display: block; font-size: 40px; font-weight: 400; letter-spacing: -0.02em; line-height: 1; }
+.qsDate { display: block; margin-top: 4px; font-size: 12.5px; opacity: .66; }
+.qsTiles { display: flex; gap: 8px; margin-top: 14px; }
+.qsTile {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  height: 44px;
+  border-radius: 22px;
+  background: #2b2c30;
+  color: #c4c7c5;
+  font-size: 11.5px;
+}
+.qsOn { background: #c2e7ff; color: #001d35; font-weight: 500; }
+
+.aCard {
+  position: relative;
+  display: block;
+  border-radius: 26px;
+  padding: 13px 16px 14px;
+  background: #1f2124;
+  color: #e3e3e3;
+}
+.aCardIdle { opacity: .58; }
+.aHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #c4c7c5;
+}
+.aHead b { font-weight: 500; }
+.aHead em { font-style: normal; opacity: .6; }
+.aHead i { font-style: normal; opacity: .8; }
+.aChev { margin-left: auto; opacity: .7; }
+.aTitle {
+  display: block;
+  margin-top: 5px;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #e3e3e3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.aBody {
+  display: block;
+  margin-top: 2px;
+  font-size: 13.5px;
+  line-height: 1.35;
+  color: #c4c7c5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.aActions { display: flex; gap: 22px; margin-top: 12px; }
+.aActions span { font-size: 13px; font-weight: 500; color: #a8c7fa; }
+
+/* ── Apple Watch ───────────────────────────────────────────────────────
+   45mm, drawn at very nearly its real size. The screen is 396 × 484 at 2×,
+   which is 162pt of usable width — the reason this surface is in the set. */
+.watchWrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 46px 0;
+}
+.watch {
+  position: relative;
+  width: 208px;
+  height: 250px;
+  border-radius: 56px;
+  background: linear-gradient(150deg, #4a4d52, #232529 40%, #16181b);
+  padding: 12px;
+  box-shadow: 0 24px 48px -20px rgba(0, 0, 0, .6);
+  z-index: 1;
+}
+.crown {
+  position: absolute;
+  right: -5px;
+  top: 78px;
+  width: 7px; height: 30px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #6f7378, #3a3d42);
+}
+.sideBtn {
+  position: absolute;
+  right: -3px;
+  top: 128px;
+  width: 4px; height: 34px;
+  border-radius: 2px;
+  background: #33363b;
+}
+.watchScreen {
+  width: 100%;
+  height: 100%;
+  border-radius: 46px;
+  background: #000;
+  padding: 16px 15px 12px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  font-family: var(--font-ios);
+  overflow: hidden;
+}
+.watchHead {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  color: #8e8e93;
+}
+.watchHead span { font-weight: 500; }
+.watchHead i { margin-left: auto; font-style: normal; }
+.watchTitle {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.24;
+  letter-spacing: -0.015em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.watchBody {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.3;
+  color: #d1d1d6;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.watchBtn {
+  margin-top: auto;
+  text-align: center;
+  padding: 7px 0;
+  border-radius: 999px;
+  background: #1c1c1e;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #d1d1d6;
+}
+
+.watchBand, .watchBandTop {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 132px;
+  background: linear-gradient(#3a3d42, #2a2c30);
+}
+.watchBandTop { top: 0; height: 60px; border-radius: 18px 18px 6px 6px; }
+.watchBand { bottom: 0; height: 60px; border-radius: 6px 6px 18px 18px; }

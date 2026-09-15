@@ -1,0 +1,118 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  /* The flow is a console, not a document: the step body scrolls inside,
+     so the agent rail beside it stays fully visible including its composer. */
+  height: calc(100vh - var(--header-h));
+}
+
+.row {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+.col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Back and forward are chrome, not content: they sit outside the scrolling
+   step body so navigation never scrolls out of reach. Steps still own their
+   own labels and guards — they just declare the controls into this bar. */
+.actionBar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 56px;
+  border-bottom: 1px solid var(--c-border);
+  background: var(--c-surface);
+}
+/* Step 01 navigates from the rows themselves and declares nothing. */
+.actionBar:empty { display: none; }
+
+.content {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* The step band is the spine of the flow: a solid Visa blue surface, with the
+   reached portion in Visa blue proper and the rest in Nova's pressed step, so
+   the progress is the background itself rather than a separate bar. White ink
+   clears AA on both halves. */
+.rail {
+  position: relative;
+  flex: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  margin: 12px 20px 10px;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--c-brand-dark);
+  box-shadow: var(--shadow-brand);
+}
+.rail::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--rail-progress, 0%);
+  background: var(--c-brand);
+  transition: width var(--dur) var(--easing-out);
+}
+
+.stepBtn {
+  position: relative;
+  appearance: none;
+  min-width: 0;
+  border: 0;
+  border-right: 1px solid rgba(255, 255, 255, .16);
+  background: transparent;
+  padding: 12px 14px 13px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.stepBtn:last-child { border-right: 0; }
+.stepBtn:hover:not(:disabled) { background: rgba(255, 255, 255, .1); }
+.stepBtn:disabled { cursor: default; }
+/* The global blue focus ring is invisible on a blue band. */
+.stepBtn:focus-visible { outline: 2px solid #fff; outline-offset: -3px; }
+
+.on {
+  padding: 12px 14px 10px;
+  border-bottom: 3px solid var(--c-gold);
+  background: rgba(255, 255, 255, .17);
+}
+
+.done { }
+
+.todo { cursor: default; }
+.todo:hover { background: transparent; }
+
+.num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+.numOn { color: var(--c-gold); }
+.numDone { color: rgba(255, 255, 255, .92); }
+.numTodo { color: rgba(255, 255, 255, .78); }
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 3px;
+}
+.labelOn { font-weight: 800; color: #fff; }
+.labelDone { color: rgba(255, 255, 255, .92); }
+.labelTodo { color: rgba(255, 255, 255, .8); }

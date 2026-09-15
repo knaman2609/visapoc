@@ -1,0 +1,69 @@
+/**
+ * Visa Product Design System — Nova.
+ *
+ * Raw palette values taken from the published `visa-light` theme in
+ * @visa/nova-styles@1.6.5 (Apache-2.0, © 2025-2026 Visa), so the console is
+ * coloured by Visa's own tokens rather than by an approximation of them.
+ * Nothing here is invented: every value below appears verbatim in that theme.
+ * The app's semantic tokens in tokens.css are derived from these and nothing
+ * else, so a change to Visa's system is a change to one file.
+ *
+ * Nova ships two "active" colours — Visa blue for standard surfaces and Visa
+ * gold for the alternate treatment. Blue carries action here; gold carries the
+ * flow's progress band.
+ */
+:root {
+  /* Action — palette-default-active (visa-light) */
+  --visa-blue:         #1434cb;
+  --visa-blue-hover:   #173be8;
+  --visa-blue-pressed: #0f2595;
+  --visa-on-blue:      #ffffff;
+
+  /* Alternate action — palette-default-active (v-alternate) */
+  --visa-gold:         #fcc015;
+  --visa-gold-hover:   #fcc936;
+  --visa-gold-pressed: #d39d03;
+  --visa-on-gold:      #021e4c;
+
+  /* Ink — palette-default-text / text-subtle */
+  --visa-text:        #000000;
+  --visa-text-subtle: #4a4a4a;
+
+  /* Structure — palette-default-border / overlay / surface washes */
+  --visa-border:            rgba(0, 0, 0, 0.1);
+  --visa-overlay:           rgba(20, 34, 57, 0.4);
+  --visa-surface-highlight: rgba(179, 215, 255, 0.35);
+  --visa-disabled:          rgba(0, 0, 0, 0.2);
+
+  /* Messaging — palette-messaging-* */
+  --visa-positive:          #2c6849;
+  --visa-positive-hover:    #327753;
+  --visa-positive-graphics: #40996b;
+  --visa-positive-surface:  #d6f2c4;
+
+  --visa-negative:          #ad2929;
+  --visa-negative-hover:    #c62f2f;
+  --visa-negative-pressed:  #7c1d1d;
+  --visa-negative-graphics: #d65151;
+  --visa-negative-surface:  #ffd6e9;
+
+  --visa-warning:          #875903;
+  --visa-warning-graphics: #c38004;
+  --visa-warning-surface:  #ffef99;
+
+  --visa-info:           #005e8a;
+  --visa-info-graphics:  #0088c7;
+  --visa-info-surface:   #c7edff;
+
+  /* Elevation — Nova's elevation scale, verbatim */
+  --visa-elevation-xsmall: 0 1px 3px 0 rgba(0, 0, 0, .05);
+  --visa-elevation-small:  0 1px 2px -1px rgba(0, 0, 0, .1), 0 1px 3px 0 rgba(0, 0, 0, .1);
+  --visa-elevation-medium: 0 4px 15px -1px rgba(0, 0, 0, .08), 0 4px 2px -2px rgba(0, 0, 0, .1);
+  --visa-elevation-large:  0 10px 18px -3px rgba(0, 0, 0, .1), 0 4px 6px -4px rgba(0, 0, 0, .1);
+  --visa-elevation-xlarge: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 4px 10px 2px rgba(0, 0, 0, .1);
+  --visa-elevation-xxlarge: 0 25px 50px -12px rgba(0, 0, 0, .25);
+
+  /* Type — Nova's stack. The licensed Visa faces are not distributable, so
+     the console renders the documented fallback, Open Sans. */
+  --visa-font-sans: "visa-font-regular", "Open Sans", system-ui, sans-serif;
+}

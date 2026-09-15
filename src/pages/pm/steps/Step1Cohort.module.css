@@ -1,0 +1,321 @@
+.chart {
+  margin-top: 24px;
+  border-top: 1px solid var(--c-border);
+}
+
+.bench { padding: 8px 0 20px; }
+.benchHead {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  width: 100%;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 6px 10px 6px 0;
+  margin: 0 0 0 -2px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+  transition: color var(--dur-fast) var(--easing-out);
+}
+.benchHead:hover { color: var(--c-brand-dark); }
+.benchHead:hover .benchChevron { color: var(--c-brand); }
+.benchHead:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+.benchChevron {
+  align-self: center;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--c-text-mute-2);
+  transition: transform var(--dur-fast) var(--easing-out), color var(--dur-fast) var(--easing-out);
+}
+.benchChevronOpen { transform: rotate(90deg); }
+
+.benchCount {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-text-soft);
+}
+
+/* 0fr → 1fr animates to the content's natural height without measuring it. */
+.benchCollapse {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows var(--dur) var(--easing-out),
+              opacity var(--dur) var(--easing-out);
+}
+.benchCollapse[data-open='false'] {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+.benchCollapseInner { overflow: hidden; min-height: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .benchCollapse { transition: none; }
+  .benchChevron { transition: none; }
+}
+.benchHint {
+  margin-left: auto;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--c-text-mute-2);
+}
+.benchTable { margin: 12px -10px 0; }
+.benchRow {
+  display: grid;
+  grid-template-columns: 1.6fr .8fr .8fr .7fr 24px;
+  gap: 12px;
+  padding: 11px 10px;
+  border-bottom: 1px solid var(--c-border-mid3);
+  align-items: center;
+  width: 100%;
+  appearance: none;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  background: transparent;
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out);
+}
+.benchRow:hover { background: var(--c-hover-blue); }
+.benchRow:hover .benchMetric { color: var(--c-brand-dark); }
+.benchRow:hover .benchOpen { opacity: 1; }
+
+.benchRowActive,
+.benchRowActive:hover {
+  background: var(--c-brand-soft);
+  box-shadow: inset 3px 0 0 var(--c-gold);
+}
+.benchRowActive .benchMetric { color: var(--c-brand-dark); font-weight: 700; }
+.benchRowActive .benchOpen { opacity: 1; font-size: 9px; font-weight: 500; }
+.benchHeadRow {
+  display: grid;
+  grid-template-columns: 1.6fr .8fr .8fr .7fr 24px;
+  gap: 12px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--c-border);
+  font-family: var(--font-mono);
+  font-size: var(--th-size);
+  font-weight: var(--th-weight);
+  letter-spacing: var(--th-track);
+  color: var(--th-color);
+  text-transform: uppercase;
+}
+.benchMetric { font-size: 13px; font-weight: 500; }
+.benchCohort { font-size: 13px; font-weight: 700; font-family: var(--font-mono); }
+.benchPort { font-size: 13px; font-weight: 500; color: var(--c-text-muted); font-family: var(--font-mono); }
+.benchDelta { font-size: 13px; font-weight: 700; color: var(--c-danger); font-family: var(--font-mono); }
+.benchDeltaOk { color: var(--c-ok); }
+.chartSwap { animation: chartSwapIn .3s var(--easing-out) both; }
+
+@keyframes chartSwapIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.chartBack {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 14px 0 0;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--c-brand-mid);
+  cursor: pointer;
+}
+.chartBack:hover { color: var(--c-brand-dark); }
+
+.chartRead {
+  margin-top: 4px;
+  padding: 12px 14px;
+  background: var(--c-surface-alt);
+  border-left: 2px solid var(--c-brand-line);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--c-text-3);
+}
+
+.benchOpen {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-brand);
+  text-align: right;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--easing-out);
+}
+
+.objectives {
+  margin-top: 28px;
+  border-top: 1px solid var(--c-border);
+  padding-top: 18px;
+}
+.objHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.objKick {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+.objStatus {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-brand-dark);
+}
+.objGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+.obj {
+  appearance: none;
+  text-align: left;
+  font-family: var(--font-sans);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  padding: 15px 16px 16px;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--easing-out),
+              background var(--dur-fast) var(--easing-out),
+              box-shadow var(--dur-fast) var(--easing-out);
+}
+.obj:hover { background: var(--c-hover-blue); border-color: var(--c-brand-line); }
+.objOn,
+.objOn:hover {
+  background: var(--c-brand-soft);
+  border-color: var(--c-brand-line);
+  box-shadow: inset 3px 0 0 var(--c-gold);
+}
+
+.objTop {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+.objMark,
+.objMarkOn {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  margin-top: 1px;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 16px;
+  text-align: center;
+}
+.objMark { border: 1px solid var(--c-border-mid2); background: var(--c-surface); }
+.objMarkOn { background: var(--c-brand); color: #fff; }
+
+.objLabel {
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+}
+.objGoal {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-text-5);
+  line-height: 1.45;
+  margin-top: 10px;
+  padding-left: 28px;
+}
+.objConstraint {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 6px;
+  padding-left: 28px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 22px;
+}
+.stat {
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  padding: 16px 18px;
+}
+.statK {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+.statV {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: 6px;
+}
+.statBrand { color: var(--c-brand-dark); }
+.statBad { color: var(--c-danger); }
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.headKick {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+
+.h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 8px 0 0;
+}
+
+.sub {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 6px;
+}

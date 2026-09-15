@@ -1,0 +1,76 @@
+.wrap { display: flex; flex-direction: column; align-items: center; width: 100%; }
+
+/* The studio's size, and it does not flex.
+   A webmail client is three columns; letting the lid shrink with the canvas
+   collapses the reading pane to about 230px on a laptop, which is not a
+   preview of anything. It stays 1004px and the canvas scrolls or zooms. */
+.lg { width: auto; }
+.lg .lid { width: 1004px; max-width: none; border-radius: 14px; padding: 12px 12px 14px; }
+.lg .screen { height: 636px; border-radius: 5px; }
+.lg .base { width: 1042px; max-width: none; height: 13px; }
+
+.lid {
+  width: 100%;
+  max-width: 620px;
+  border-radius: 12px;
+  padding: 10px 10px 12px;
+  background: #1c1c1e;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .1),
+              0 10px 24px -8px rgba(0, 0, 0, .28);
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  height: 420px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--c-surface);
+}
+
+/* Browser chrome, reduced to the two things that say "this is a window". */
+.chrome {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--c-surface-hi3);
+  border-bottom: 1px solid var(--c-border-mid3);
+}
+.dots { display: inline-flex; gap: 6px; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--c-border-mid4); }
+.dots i:first-child { background: #ff5f57; }
+.dots i:nth-child(2) { background: #febc2e; }
+.dots i:last-child { background: #28c840; }
+.tab {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+  background: var(--c-surface);
+  border-radius: var(--r-sm);
+  padding: 3px 12px;
+}
+
+.view { flex: 1; min-height: 0; overflow: hidden; }
+
+/* The base reads as a laptop without drawing a laptop. */
+.base {
+  position: relative;
+  width: calc(100% + 34px);
+  max-width: 654px;
+  height: 11px;
+  border-radius: 0 0 10px 10px;
+  background: linear-gradient(#c8ccd2, #a9aeb6);
+  box-shadow: 0 2px 5px -2px rgba(0, 0, 0, .3);
+}
+.notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78px;
+  height: 5px;
+  border-radius: 0 0 6px 6px;
+  background: #93989f;
+}

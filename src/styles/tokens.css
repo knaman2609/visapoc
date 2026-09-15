@@ -1,0 +1,238 @@
+@import "./visa.css";
+
+/**
+ * Every colour below resolves to a Visa Nova token or a mix of one with white.
+ * The names stay as the app's own semantics — brand, ok, warn, danger — so the
+ * Visa system can be re-themed from visa.css without touching a stylesheet.
+ */
+:root {
+  /* ── Theme seeds ──────────────────────────────────────────────────
+     Every neutral below is a wash of --c-ink over --c-paper, so the whole
+     grey ramp re-tints from these two lines. Black over white reproduces
+     the published Nova palette exactly; giving the ink a hue warms or cools
+     every label, surface and border at once. */
+  --c-ink:   var(--visa-text);
+  --c-paper: #ffffff;
+
+  /* Ink — Visa's neutral axis, stepped so each level clears AA for small text
+     on white and on the off-white surface. The two dim steps sit below it on
+     purpose: they are rules, carets and spent states, not copy. */
+  --c-text:        var(--c-ink);
+  --c-text-2:      color-mix(in srgb, var(--c-ink) 89.8%, var(--c-paper));
+  --c-text-3:      color-mix(in srgb, var(--c-ink) 81.96%, var(--c-paper));
+  --c-text-4:      color-mix(in srgb, var(--c-ink) 76.08%, var(--c-paper));
+  --c-text-5:      color-mix(in srgb, var(--c-ink) 70.98%, var(--c-paper));
+  --c-text-muted:  color-mix(in srgb, var(--c-ink) 65.1%, var(--c-paper));
+  --c-text-mute-2: color-mix(in srgb, var(--c-ink) 58.04%, var(--c-paper));
+  --c-text-soft:   color-mix(in srgb, var(--c-ink) 53.73%, var(--c-paper));
+  --c-text-dim:    color-mix(in srgb, var(--c-ink) 41.96%, var(--c-paper));
+  /* Aliases — these resolved to the same value as the step above them, so
+     they now say so rather than drifting apart on the next palette change. */
+  --c-text-soft-2: var(--c-text-soft);
+  --c-text-dim-2:  var(--c-text-dim);
+
+  /* Surfaces */
+  --c-surface:     var(--c-paper);
+  --c-surface-hi:  color-mix(in srgb, var(--c-ink) 1.18%, var(--c-paper));
+  --c-surface-alt: color-mix(in srgb, var(--c-ink) 1.96%, var(--c-paper));
+  --c-surface-hi3: color-mix(in srgb, var(--c-ink) 3.53%, var(--c-paper));
+  --c-bg:          color-mix(in srgb, var(--c-ink) 3.92%, var(--c-paper));
+  --c-surface-hi6: color-mix(in srgb, var(--c-ink) 4.71%, var(--c-paper));
+  --c-surface-hi5: color-mix(in srgb, var(--c-ink) 5.88%, var(--c-paper));
+  --c-surface-hi2: var(--c-surface-alt);
+  --c-surface-hi4: var(--c-bg);
+  --c-hover-blue:  color-mix(in srgb, var(--c-brand) 4%, var(--c-paper));
+
+  /* Action — Visa blue, with Nova's own hover and pressed steps */
+  --c-brand:        var(--visa-blue);
+  --c-brand-bright: var(--visa-blue-hover);
+  --c-brand-dark:   var(--visa-blue-pressed);
+  --c-brand-mid:    color-mix(in srgb, var(--c-brand) 70%, var(--c-brand-dark));
+  --c-brand-line:   color-mix(in srgb, var(--c-brand) 26%, var(--c-paper));
+  --c-brand-tint:   color-mix(in srgb, var(--c-brand) 8%, var(--c-paper));
+  --c-brand-soft:   color-mix(in srgb, var(--c-brand) 6%, var(--c-paper));
+  --c-brand-hover:  color-mix(in srgb, var(--c-brand) 12%, var(--c-paper));
+  --c-brand-alt:    color-mix(in srgb, var(--c-brand) 16%, var(--c-paper));
+  --c-brand-fade:   color-mix(in srgb, var(--c-brand) 55%, var(--c-paper));
+  --c-on-brand:     var(--visa-on-blue);
+
+  /* Progress — Visa gold. It carries the flow band and nothing else, so the
+     one gold surface in the console always means "where you are". */
+  --c-gold:         var(--visa-gold);
+  --c-gold-hover:   var(--visa-gold-hover);
+  --c-gold-pressed: var(--visa-gold-pressed);
+  --c-on-gold:      var(--visa-on-gold);
+  --c-gold-track:   color-mix(in srgb, var(--c-gold) 16%, var(--c-paper));
+  --c-gold-line:    color-mix(in srgb, var(--c-gold) 45%, var(--c-paper));
+
+  /* Status — Nova messaging */
+  --c-ok:          var(--visa-positive);
+  --c-ok-bg:       color-mix(in srgb, var(--visa-positive-surface) 35%, var(--c-paper));
+  --c-ok-bg-2:     color-mix(in srgb, var(--visa-positive-surface) 45%, var(--c-paper));
+  --c-ok-bg-3:     color-mix(in srgb, var(--visa-positive-surface) 60%, var(--c-paper));
+  --c-ok-border:   color-mix(in srgb, var(--visa-positive-graphics) 45%, var(--c-paper));
+
+  --c-warn:        var(--visa-warning);
+  --c-warn-2:      var(--visa-warning-graphics);
+  --c-warn-bg:     color-mix(in srgb, var(--visa-warning-surface) 55%, var(--c-paper));
+  --c-warn-bg-2:   color-mix(in srgb, var(--visa-warning-surface) 80%, var(--c-paper));
+  --c-warn-line:   color-mix(in srgb, var(--visa-warning-graphics) 40%, var(--c-paper));
+
+  --c-danger:      var(--visa-negative);
+  --c-danger-2:    var(--visa-negative-hover);
+  --c-danger-3:    var(--visa-negative-pressed);
+  --c-danger-bg:   color-mix(in srgb, var(--visa-negative-surface) 45%, var(--c-paper));
+  --c-danger-bg-2: color-mix(in srgb, var(--visa-negative-surface) 70%, var(--c-paper));
+  --c-danger-soft: color-mix(in srgb, var(--visa-negative-surface) 22%, var(--c-paper));
+  --c-danger-line: color-mix(in srgb, var(--visa-negative-graphics) 38%, var(--c-paper));
+
+  --c-info:        var(--visa-info);
+  --c-info-bg:     color-mix(in srgb, var(--visa-info-surface) 45%, var(--c-paper));
+
+  /* Phone channels — voice takes Nova's info colour; the relationship-manager
+     purple is the one hue outside the system, kept so a human call reads as
+     its own thing on a screen already full of blue. */
+  --c-voice:     var(--visa-info);
+  --c-voice-bg:  color-mix(in srgb, var(--visa-info-surface) 45%, var(--c-paper));
+  --c-rm:        #6d4aa8;
+  --c-rm-bg:     #efeafa;
+
+  /* ── Chart ramps ──────────────────────────────────────────────────
+     Steps of the Visa hues, cut for data marks rather than for chrome: the
+     brand blue itself sits at OKLCH L 0.43, the floor of the readable band for
+     a fill, so the mark step is one stop lighter. The categorical pair used by
+     the domestic/international split (#2b4fe0 with #c38004) passes every check
+     in the palette validator — lightness band, chroma floor, CVD separation
+     ΔE 33.5 under protanopia, and 3:1 against the surface. */
+  --ch-value-1: #1434cb;
+  --ch-value-2: #2b4fe0;
+  --ch-value-3: #4a6ae8;
+  --ch-value-4: #7089ef;
+  --ch-value-5: #9daef5;
+  --ch-value-6: #c8d3fa;
+
+  /* Categorical series. Six mutually distinguishable hues is close to the
+     ceiling — the obvious rainbow fails badly (red against green is ΔE 4.7
+     under deuteranopia). This set was searched for rather than picked: every
+     pair clears both floors, worst case ΔE 8.5 under protanopia and 17.7 for
+     normal vision, with Visa blue leading. Slots are assigned by member, never
+     by rank, so changing the measure never repaints a series. */
+  --ch-cat-1: #2b4fe0;
+  --ch-cat-2: #c37902;
+  --ch-cat-3: #159cb7;
+  --ch-cat-4: #d2316d;
+  --ch-cat-5: #854505;
+  --ch-cat-6: #9a6af5;
+
+
+  --ch-risk-1: #8c2121;
+  --ch-risk-2: #ad2929;
+  --ch-risk-3: #c62f2f;
+  --ch-risk-4: #d65151;
+  --ch-risk-5: #e58585;
+  --ch-risk-6: #f2bdbd;
+
+  /* The second hue in the one categorical pair on the screen. */
+  --ch-intl: #c38004;
+  --ch-intl-soft: #f0d9a8;
+
+  /* Grid and axis ink: one step off the surface, hairline, never dashed. */
+  --ch-grid: #ececec;
+  --ch-context: #9a9a9a;
+
+
+  /* Borders — Nova's border is a 10% black wash; these are it, resolved
+     against the same two seeds as everything else. */
+  --c-border-mid3: color-mix(in srgb, var(--c-ink) 6.27%, var(--c-paper));
+  --c-border-mid6: color-mix(in srgb, var(--c-ink) 5.88%, var(--c-paper));
+  --c-border-soft: color-mix(in srgb, var(--c-ink) 7.06%, var(--c-paper));
+  --c-border-mid7: color-mix(in srgb, var(--c-ink) 7.84%, var(--c-paper));
+  --c-border-mid:  color-mix(in srgb, var(--c-ink) 8.63%, var(--c-paper));
+  --c-border-mid5: color-mix(in srgb, var(--c-ink) 9.02%, var(--c-paper));
+  --c-border:      color-mix(in srgb, var(--c-ink) 9.8%, var(--c-paper));
+  --c-border-mid2: color-mix(in srgb, var(--c-ink) 10.98%, var(--c-paper));
+  --c-border-mid8: color-mix(in srgb, var(--c-ink) 11.37%, var(--c-paper));
+  --c-border-mid4: color-mix(in srgb, var(--c-ink) 12.16%, var(--c-paper));
+
+  /* Type */
+  --font-sans: var(--visa-font-sans);
+  --font-mono: ui-monospace, Menlo, monospace;
+  /* Device previews render in the device's own font, not the brand's, so a
+     phone mock reads as a screenshot rather than as more of this app. */
+  --font-ios: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+
+  /* Table column headings. Uppercase mono reads as a data grid, but at 400
+     weight in a light grey it stops being legible — at 9px in --c-text-soft
+     it was also under the AA contrast floor. Every column head in the app
+     takes these values so the treatment cannot drift apart again. */
+  --th-size:   10px;
+  --th-weight: 600;
+  --th-track:  0.06em;
+  --th-color:  var(--c-text-3);
+
+  /* Spacing scale */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-7: 28px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-14: 56px;
+
+  /* Radii */
+  --r-none: 0;
+  --r-sm:   9px;
+  --r-md:   10px;
+  --r-lg:   12px;
+  --r-xl:   14px;
+  --r-2xl:  16px;
+  --r-pill: 999px;
+  /* Nova's button corner. */
+  --r-button: 6px;
+
+  /* Motion */
+  --dur-fast: 200ms;
+  --dur:      300ms;
+  --dur-slow: 450ms;
+  --easing-out: cubic-bezier(.2, .8, .2, 1);
+
+  /* Scrim behind modals and drawers — Nova's overlay. */
+  --c-scrim: var(--visa-overlay);
+
+  /* Elevation — Nova's scale, mapped onto the names the app already uses. */
+  --shadow-sm:  var(--visa-elevation-xsmall);
+  --shadow-md:  var(--visa-elevation-medium);
+  --shadow-lg:  var(--visa-elevation-xlarge);
+  --shadow-xl:  var(--visa-elevation-xxlarge);
+  --shadow-lft: var(--visa-elevation-large);
+  --shadow-brand: var(--visa-elevation-small);
+
+  /* Layout */
+  --sidebar-w: 236px;
+  --header-h:  64px;
+
+  /* z-index */
+  --z-header: 10;
+  --z-drawer: 55;
+  --z-drawer-panel: 60;
+  /* The agent floats over the page but is not a toast: a modal has to be able
+     to cover it, or the panel swallows clicks aimed at whatever is open. */
+  --z-agent:  65;
+  --z-modal:  70;
+  --z-toast:  90;
+}
+
+/* -- global utility rules used in dozens of places -- */
+.mono   { font-family: var(--font-mono); }
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}

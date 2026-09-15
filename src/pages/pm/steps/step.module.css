@@ -1,0 +1,70 @@
+.wrap {
+  animation: screenIn .3s ease both;
+  padding: 28px 56px 44px;
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-6);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+
+.h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 8px 0 0;
+  color: var(--c-text);
+}
+
+.sub {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 6px;
+}
+
+.status {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-brand-dark);
+}
+
+.actionsRight { margin-left: auto; }
+
+.hCol { display: flex; flex-direction: column; gap: 6px; }
+
+.sectKick {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+
+.tableWrap { padding: 0 0 0; overflow-x: auto; }
+
+.rowHeadWrap {
+  padding: 10px 12px;
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+  font-family: var(--font-mono);
+  font-size: var(--th-size);
+  font-weight: var(--th-weight);
+  letter-spacing: var(--th-track);
+  color: var(--th-color);
+  text-transform: uppercase;
+}

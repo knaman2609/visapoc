@@ -1,0 +1,318 @@
+.wrap {
+  padding: 0 56px 48px;
+  animation: screenIn .3s ease both;
+}
+
+/* One column, mostly air: the page asks a question and lists what the sweep
+   found. Everything shares this width — the feed included — so nothing sits
+   wider than the question that opened it. */
+.col {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-top: 92px;
+}
+
+.h1 {
+  font-size: 29px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--c-text);
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+/* ── Composer ─────────────────────────────────────────── */
+.composer {
+  border: 1px solid transparent;
+  border-radius: var(--r-lg);
+  background: var(--c-surface-hi3);
+  padding: 14px 16px 10px;
+  transition: background var(--dur-fast) var(--easing-out),
+              border-color var(--dur-fast) var(--easing-out);
+}
+.composer:focus-within {
+  background: var(--c-surface);
+  border-color: var(--c-gold);
+  box-shadow: 0 0 0 3px var(--c-gold-track);
+}
+
+.input {
+  display: block;
+  width: 100%;
+  resize: none;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--c-text);
+}
+.input::placeholder { color: var(--c-text-soft); font-weight: 400; }
+.input:focus { outline: none; }
+
+.composerFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+.hint { font-size: 11px; font-weight: 500; color: var(--c-text-soft); }
+
+.send {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  appearance: none;
+  border: 0;
+  border-radius: 50%;
+  background: var(--c-surface-hi5);
+  color: var(--c-text-mute-2);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out), color var(--dur-fast) var(--easing-out);
+}
+/* It only lights up once there is something to send. */
+.send:not(:disabled) { background: var(--c-brand); color: var(--c-on-brand); }
+.send:not(:disabled):hover { background: var(--c-brand-bright); }
+.send:disabled { cursor: default; }
+
+.suggestions { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; margin-top: 14px; }
+.suggestion {
+  appearance: none;
+  border: 1px solid var(--c-border-mid4);
+  border-radius: var(--r-pill);
+  background: var(--c-surface);
+  padding: 6px 13px;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out),
+              border-color var(--dur-fast) var(--easing-out),
+              color var(--dur-fast) var(--easing-out);
+}
+.suggestion:hover { background: var(--c-brand-tint); border-color: var(--c-brand-line); color: var(--c-brand-dark); }
+
+/* ── The exchange ─────────────────────────────────────── */
+.log {
+  margin-top: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.turn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 11px 14px;
+  border-radius: var(--r-md);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.6;
+  animation: stepIn .2s var(--easing-out) both;
+}
+.you { background: var(--c-brand); color: #fff; margin-left: 72px; }
+.agent { background: var(--c-surface-hi3); color: var(--c-text-3); margin-right: 40px; }
+.said { display: block; }
+.turnActions { display: flex; gap: 8px; }
+
+.typing { display: inline-flex; gap: 4px; padding: 3px 0; }
+.typing i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--c-text-dim);
+  animation: pulse 1s infinite;
+}
+.typing i:nth-child(2) { animation-delay: .18s; }
+.typing i:nth-child(3) { animation-delay: .36s; }
+
+.clear {
+  align-self: center;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 2px 8px;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--c-text-muted);
+  cursor: pointer;
+}
+.clear:hover { color: var(--c-brand-dark); text-decoration: underline; }
+
+/* ── List ─────────────────────────────────────────────── */
+.listHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 52px;
+  border-bottom: 1px solid var(--c-border-mid5);
+}
+
+.tabs { display: flex; }
+.tab {
+  appearance: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  padding: 8px 2px;
+  margin-right: 22px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-muted);
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--easing-out),
+              border-color var(--dur-fast) var(--easing-out);
+}
+.tab:hover { color: var(--c-text-2); }
+.tabOn { color: var(--c-brand); border-bottom-color: var(--c-gold); border-bottom-width: 3px; padding-bottom: 7px; }
+
+.seg { display: flex; gap: 2px; padding: 2px; border-radius: var(--r-pill); margin-bottom: 6px; }
+.segBtn {
+  appearance: none;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: transparent;
+  padding: 5px 13px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  cursor: pointer;
+}
+.segBtn:hover { color: var(--c-text-2); }
+.segOn { background: var(--c-surface-hi5); color: var(--c-text); font-weight: 600; }
+
+.list { margin-top: 2px; }
+
+/* The row is one target with two quieter ones inside it: the sentence starts
+   the work, the pair on the right chooses which door. */
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--c-border-mid6);
+  transition: background var(--dur-fast) var(--easing-out);
+}
+.row:hover { background: var(--c-surface-hi2); }
+.row:last-child { border-bottom: 0; }
+
+.rowMain {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 14px 8px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.rowMain:focus-visible { outline: 2px solid var(--c-brand); outline-offset: -2px; }
+
+.mark { flex: none; color: var(--c-text-mute-2); }
+.row:hover .mark { color: var(--c-brand); }
+
+.line {
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--c-text-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The stamp and the two doors share the same slot: the stamp is the resting
+   state, the actions take over on hover so the list stays quiet. */
+.when {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  padding-right: 8px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--c-text-soft);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--easing-out);
+}
+.behind { color: var(--c-danger); }
+
+.actions {
+  position: relative;
+  z-index: 1;
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  display: flex;
+  gap: 6px;
+  padding-right: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--easing-out);
+}
+.row:hover .when,
+.row:focus-within .when { opacity: 0; }
+.row:hover .actions,
+.row:focus-within .actions { opacity: 1; pointer-events: auto; }
+
+.ghost,
+.solid {
+  appearance: none;
+  border-radius: var(--r-button);
+  padding: 6px 11px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.018em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.ghost {
+  border: 1px solid var(--c-border-mid4);
+  background: var(--c-surface);
+  color: var(--c-text-3);
+}
+.ghost:hover { background: var(--c-hover-blue); border-color: var(--c-brand-line); color: var(--c-brand-dark); }
+.solid { border: 0; background: var(--c-brand); color: var(--c-on-brand); }
+.solid:hover { background: var(--c-brand-bright); }
+
+.empty {
+  padding: 30px 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+}
+
+/* The sweep, as its own tab rather than a slab under the page. */
+.feed { margin-top: 14px; }
+
+.liveDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: var(--c-ok);
+  vertical-align: middle;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .turn, .row, .actions, .when { animation: none; transition: none; }
+}

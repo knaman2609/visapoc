@@ -1,0 +1,20 @@
+.kicker {
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+
+.xs { font-size: 9.5px; font-weight: 500; letter-spacing: 0.11em; }
+.sm { font-size: 10px; font-weight: 500; }
+.md { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; }
+
+.brand { color: var(--c-brand-dark); }
+.muted { color: var(--c-text-soft); }
+
+.chip {
+  background: var(--c-brand-tint);
+  color: var(--c-brand-dark);
+  padding: 4px 8px;
+  display: inline-block;
+}

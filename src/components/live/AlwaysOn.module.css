@@ -1,0 +1,223 @@
+/* One feed row. The ticker maths depends on this being fixed. */
+.wrap {
+  --row: 52px;
+
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  background: var(--c-surface);
+  overflow: hidden;
+}
+
+/* ── Live bar ─────────────────────────────────────────── */
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  background: var(--c-brand-tint);
+  border-bottom: 1px solid var(--c-brand-line);
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--c-ok);
+  background: var(--c-ok-bg);
+  border: 1px solid var(--c-ok-border);
+  border-radius: var(--r-pill);
+  padding: 4px 10px;
+  flex-shrink: 0;
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-ok);
+  animation: pulse 1.8s var(--easing-out) infinite;
+}
+
+.barTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-brand-dark);
+}
+.barSub {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--c-text-5);
+}
+
+.sweep {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  text-align: right;
+}
+.sweepK {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+.sweepNext { font-size: 11.5px; font-weight: 500; color: var(--c-text-5); }
+.clock {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--c-brand);
+}
+
+.viewAll {
+  appearance: none;
+  flex-shrink: 0;
+  border: 1px solid var(--c-brand-line);
+  border-radius: var(--r-pill);
+  background: var(--c-surface);
+  color: var(--c-brand-dark);
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out),
+              border-color var(--dur-fast) var(--easing-out);
+}
+.viewAll:hover { background: var(--c-brand-hover); border-color: var(--c-brand); }
+.viewAll:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 2px; }
+
+/* ── Section head ─────────────────────────────────────── */
+.paneHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 14px 18px 0;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+.paneHint {
+  margin-left: auto;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--c-text-mute-2);
+}
+
+/* ── Ticker ───────────────────────────────────────────── */
+.viewport {
+  position: relative;
+  height: calc(var(--row) * 4);
+  overflow: hidden;
+  padding: 0 18px 8px;
+  /* The row leaving at the top dissolves rather than being guillotined. */
+  mask-image: linear-gradient(to bottom, transparent 0, #000 22%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%);
+}
+
+/* Five rows are rendered inside a four-row window and bottom-anchored, so the
+   oldest sits above the fold. Each tick the whole track rises one row. */
+.track {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  animation: feedRise 0.55s var(--easing-out);
+}
+
+@keyframes feedRise {
+  from { transform: translateY(var(--row)); }
+  to   { transform: none; }
+}
+
+.full {
+  list-style: none;
+  margin: 0;
+  padding: 0 18px 10px;
+  max-height: 340px;
+  overflow-y: auto;
+  animation: stepIn 0.3s var(--easing-out) both;
+}
+
+/* ── Event row ────────────────────────────────────────── */
+.event {
+  display: grid;
+  grid-template-columns: 42px 76px 1fr;
+  gap: 10px;
+  align-items: center;
+  height: var(--row);
+  border-bottom: 1px solid var(--c-border-mid6);
+}
+.event:last-child { border-bottom: 0; }
+
+/* The row that just arrived, lifting into place under the one above it. */
+.fresh { animation: feedIn 0.55s var(--easing-out) both; }
+
+@keyframes feedIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.eventT {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+  font-variant-numeric: tabular-nums;
+}
+.eventKind {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: var(--r-pill);
+  padding: 3px 0;
+}
+.eventKind.opp   { color: var(--c-brand-dark); background: var(--c-brand-soft); }
+.eventKind.risk  { color: var(--c-danger); background: var(--c-danger-bg); }
+.eventKind.sweep { color: var(--c-text-muted); background: var(--c-surface-hi3); }
+
+.eventBody { min-width: 0; }
+.eventTitle {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--c-text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.eventMeta {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot { animation: none; }
+  .track { animation: none; }
+  .fresh { animation: none; }
+}

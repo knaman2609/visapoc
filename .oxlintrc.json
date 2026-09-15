@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "env": { "browser": true, "es2024": true },
+  "plugins": ["react", "unicorn", "typescript", "oxc"],
+  "rules": {
+    "no-undef": "error",
+    "unicorn/no-thenable": "off",
+    "react/only-export-components": "warn"
+  }
+}

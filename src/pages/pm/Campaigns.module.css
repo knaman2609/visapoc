@@ -1,0 +1,689 @@
+/* ── Inside one campaign ──────────────────────────────── */
+/* The header names what you drilled into and keeps the way back in reach. */
+.focusHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--c-border);
+}
+.back {
+  appearance: none;
+  border: 1px solid var(--c-border-mid4);
+  border-radius: var(--r-pill);
+  background: var(--c-surface);
+  padding: 6px 14px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-text-5);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.back:hover { background: var(--c-hover-blue); color: var(--c-brand-dark); border-color: var(--c-brand-line); }
+
+.focusText { min-width: 0; flex: 1; }
+.focusName {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--c-text);
+  margin: 0;
+}
+.focusSub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+  margin-top: 3px;
+}
+
+.openReg {
+  appearance: none;
+  border: 0;
+  border-radius: var(--r-button);
+  background: var(--c-brand);
+  color: var(--c-on-brand);
+  padding: 9px 14px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.018em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.openReg:hover { background: var(--c-brand-bright); }
+
+.focusStats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--c-border);
+}
+.stat { min-width: 0; }
+.statK {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+.statV {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--c-text);
+  margin-top: 5px;
+}
+.statSub {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.focusBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--c-border);
+}
+.focusChart { min-width: 0; }
+
+.focusSide {
+  border-left: 1px solid var(--c-border-mid5);
+  padding-left: 24px;
+  min-width: 0;
+}
+.sideK {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  margin-bottom: 8px;
+}
+.sideFix {
+  margin-top: 16px;
+  padding: 11px 13px;
+  border-radius: var(--r-md);
+  background: var(--c-brand-tint);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--c-text-3);
+}
+.sideFix b { font-weight: 700; color: var(--c-brand-dark); }
+
+@media (max-width: 1400px) {
+  .focusStats { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 16px; }
+  .focusBody { grid-template-columns: minmax(0, 1fr); }
+  .focusSide { border-left: 0; border-top: 1px solid var(--c-border-mid5); padding-left: 0; padding-top: 18px; }
+}
+
+/* The ranked breakdown, held by a rule the way the deep dive holds its own. */
+.body {
+  margin-top: 52px;
+  padding-top: 40px;
+  border-top: 1px solid var(--c-border);
+}
+.bodyFoot {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--c-border-mid6);
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 7px 0 0;
+  color: var(--c-text);
+}
+
+/* Every control on one line: what you are cutting by, then what you are
+   measuring. Filters belong above the charts, in a single row. */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-bottom: 16px;
+}
+
+.rule { width: 1px; height: 22px; background: var(--c-border-mid4); }
+
+.lede {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 16px;
+}
+
+/* Filters sit in one row above the chart. */
+.metrics { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.mChip {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--c-border-mid4);
+  border-radius: var(--r-pill);
+  background: var(--c-surface);
+  padding: 6px 13px;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--c-text-5);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--dur-fast) var(--easing-out),
+              border-color var(--dur-fast) var(--easing-out);
+}
+
+.mChip:hover { background: var(--c-hover-blue); }
+.mChipOn { background: var(--c-brand); border-color: var(--c-brand); color: #fff; font-weight: 600; }
+
+/* Trend first — a dashboard opens on the shape of the last twelve months. */
+.trend { margin-top: 56px; }
+
+.summary {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--c-border);
+}
+
+.summaryHead {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px 0 12px;
+}
+
+.summaryK {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.summaryNote { font-size: 11.5px; font-weight: 500; color: var(--c-text-mute-2); }
+
+/* The arrival strip carries the argument, not just the breadcrumb: which
+   member, on which measure, against the book. */
+.from {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  padding: 11px 15px;
+  border-radius: var(--r-md);
+  background: var(--c-brand-tint);
+}
+
+.fromKick {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--c-brand);
+}
+
+.fromTitle { font-size: 13px; font-weight: 600; color: var(--c-brand-dark); }
+
+.fromClear {
+  margin-left: auto;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--c-surface);
+  padding: 4px 12px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--c-brand-dark);
+  cursor: pointer;
+}
+
+.fromClear:hover { background: var(--c-brand-hover); }
+
+.wrap {
+  padding: 28px 56px 48px;
+  animation: screenIn .3s ease both;
+}
+
+.headKick {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+
+.headRight { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; flex-shrink: 0; }
+
+.count {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--c-brand-dark);
+  white-space: nowrap;
+}
+
+/* ── Register ─────────────────────────────────────────── */
+.tableHead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 22px;
+  padding-bottom: 10px;
+}
+
+.tableKick {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.sortGroup { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+
+.sortK {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  margin-right: 2px;
+}
+
+.sortBtn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  border-radius: var(--r-sm);
+  padding: 4px 10px;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--c-text-5);
+  cursor: pointer;
+}
+
+.sortBtn:hover { background: var(--c-surface-hi3); }
+
+.sortOn { background: var(--c-brand-tint); color: var(--c-brand-dark); font-weight: 600; }
+
+.table { margin-top: 2px; }
+
+.rowHead,
+.row {
+  display: grid;
+  grid-template-columns: minmax(240px, 2.1fr) 110px 190px 120px minmax(180px, 1.3fr) 210px;
+  gap: 18px;
+  align-items: center;
+}
+
+.rowHead {
+  padding: 10px 12px;
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+  font-family: var(--font-mono);
+  font-size: var(--th-size);
+  font-weight: var(--th-weight);
+  letter-spacing: var(--th-track);
+  color: var(--th-color);
+  text-transform: uppercase;
+}
+
+/* The row is a button, so it needs the reset — without it the browser draws
+   its own border and the whole register reads as a stack of chips. */
+.row {
+  width: 100%;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 16px 12px;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out);
+}
+.row:hover { background: var(--c-hover-blue); }
+.row:focus-visible { outline: 2px solid var(--c-brand); outline-offset: -2px; }
+
+.num { text-align: right; }
+
+.campaign { border-bottom: 1px solid var(--c-border-mid6); }
+
+.campaign:last-child { border-bottom: 0; }
+
+.campaignOpen { background: var(--c-surface-hi2); }
+
+.cellName { display: flex; align-items: center; gap: 11px; min-width: 0; }
+
+.tag {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: var(--r-sm);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+/* The cohort's risk band, in the same three colours it wears everywhere else. */
+.tag_high   { color: var(--c-danger); background: var(--c-danger-bg); }
+.tag_medium { color: var(--c-warn);   background: var(--c-warn-bg); }
+.tag_low    { color: var(--c-ok);     background: var(--c-ok-bg-3); }
+
+.nameText { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+
+.name {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.code {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.window { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+
+.windowTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-text-4);
+  font-variant-numeric: tabular-nums;
+}
+
+.windowLeft { font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: var(--c-text-soft); }
+
+.windowTrack {
+  height: 4px;
+  border-radius: var(--r-pill);
+  background: var(--c-surface-hi5);
+  overflow: hidden;
+}
+
+.windowFill { display: block; height: 100%; border-radius: var(--r-pill); background: var(--c-brand-fade); }
+
+.respV { display: block; font-size: 15px; font-weight: 700; color: var(--c-text); font-variant-numeric: tabular-nums; }
+
+.respSub { display: block; font-size: 10.5px; font-weight: 500; color: var(--c-text-mute-2); margin-top: 2px; }
+
+.profit { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+
+.profitTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-ok);
+}
+
+.profitOf { font-size: 10.5px; color: var(--c-text-mute-2); font-weight: 500; }
+
+/* Profit against the plan, with a tick where the plan says it should be. */
+.track {
+  position: relative;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--c-surface-hi5);
+  overflow: visible;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--c-ok);
+  transition: width var(--dur) var(--easing-out);
+}
+
+.fillBad { background: var(--c-warn-2); }
+
+.pace {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--c-text-3);
+  transform: translateX(-1px);
+}
+
+.right { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+
+.state {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border-radius: var(--r-pill);
+  padding: 5px 11px;
+  white-space: nowrap;
+}
+.state_ok  { color: var(--c-ok);   background: var(--c-ok-bg-3); }
+.state_bad { color: var(--c-warn); background: var(--c-warn-bg); }
+
+.flag,
+.fixedFlag {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.fixedFlag {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.caret {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-soft);
+  transition: transform var(--dur-fast) var(--easing-out);
+}
+
+.caretOpen { transform: rotate(180deg); color: var(--c-brand); }
+
+/* ── Expansion ────────────────────────────────────────── */
+.expand {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 24px;
+  padding: 4px 20px 22px;
+  animation: stepIn .22s var(--easing-out) both;
+}
+
+.expandMain { min-width: 0; }
+
+.desc {
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--c-text-4);
+  margin: 0 0 16px;
+  max-width: 78ch;
+}
+
+.expandSide {
+  border-left: 1px solid var(--c-border-mid3);
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.factK {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.factV { font-size: 12px; font-weight: 500; color: var(--c-text-3); margin-top: 3px; line-height: 1.45; }
+
+.fact { min-width: 0; }
+
+.fixBox {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--c-brand-line);
+  border-radius: var(--r-md);
+  background: var(--c-brand-tint);
+}
+
+.fixKick {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--c-brand);
+}
+
+.fixTitle { font-size: 14px; font-weight: 700; color: var(--c-brand-dark); margin-top: 6px; }
+
+.fixText { font-size: 12.5px; font-weight: 500; line-height: 1.6; color: var(--c-text-3); margin-top: 7px; }
+
+.fixActions { margin-top: 14px; }
+
+.doneBox {
+  margin-top: 16px;
+  padding: 12px 15px;
+  border: 1px solid var(--c-ok-border);
+  border-radius: var(--r-md);
+  background: var(--c-ok-bg);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--c-text-3);
+}
+
+/* ── Channel table, inside a row expansion ────────────── */
+.chTable { margin-top: 12px; }
+
+.chHead,
+.chRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  align-items: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.chRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  align-items: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.chRow:last-child { border-bottom: 0; }
+
+.chUnder { background: var(--c-danger-soft); }
+
+.chName { display: flex; align-items: center; gap: 7px; font-weight: 600; color: var(--c-text); }
+
+.underTag,
+.movedTag {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border-radius: var(--r-pill);
+  padding: 2px 7px;
+}
+
+.movedTag {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border-radius: var(--r-pill);
+  padding: 2px 7px;
+}
+
+.rateOk { color: var(--c-ok); font-weight: 600; }
+
+.rateBad { color: var(--c-danger); font-weight: 600; }

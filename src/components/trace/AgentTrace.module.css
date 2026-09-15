@@ -1,0 +1,30 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--c-border-mid3);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--c-border-mid6);
+  animation: stepIn .32s ease both;
+}
+
+.label {
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--c-text);
+}
+
+.result {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-brand-dark);
+  text-align: right;
+}

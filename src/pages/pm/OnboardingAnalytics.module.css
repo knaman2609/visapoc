@@ -1,0 +1,514 @@
+.wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex: 1;
+}
+
+/* The page proper. The stage drawer is its sibling, not an overlay on top of
+   it, so opening a stage narrows this column instead of covering it. */
+.col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Head ─────────────────────────────────────────────────────────── */
+.head { padding: var(--s-7) var(--s-8) var(--s-5); }
+
+.h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--c-text);
+}
+
+.sub {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 6px;
+  max-width: 84ch;
+  line-height: 1.55;
+}
+
+/* ── Stat strip ───────────────────────────────────────────────────── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.stat { padding: 20px 24px; border-right: 1px solid var(--c-border-mid3); }
+.stat:last-child { border-right: 0; }
+
+.statK {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+
+.statV {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: var(--s-2);
+  color: var(--c-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.statN { font-size: 12px; font-weight: 500; color: var(--c-text-muted); margin-top: 2px; }
+
+/* ── Panels ───────────────────────────────────────────────────────── */
+.panel {
+  margin: var(--s-6) var(--s-8) 0;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  background: var(--c-surface);
+  padding: var(--s-5) var(--s-6) var(--s-6);
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-6);
+  margin-bottom: var(--s-10);
+}
+.cols .panel { margin: var(--s-6) 0 0; }
+.cols > :first-child { margin-left: var(--s-8); }
+.cols > :last-child { margin-right: var(--s-8); }
+
+.panelTitle {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--c-text);
+}
+
+.panelSub {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 4px;
+  max-width: 80ch;
+  line-height: 1.5;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────────────── */
+
+/* Sits above the funnel and under the stat strip, so the headline figures stay
+   put while the view beneath them changes. */
+.tabs {
+  display: flex;
+  gap: var(--s-1);
+  padding: 0 var(--s-8);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.tab {
+  appearance: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  padding: 11px 14px;
+  margin-bottom: -1px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-muted);
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--easing-out),
+              border-color var(--dur-fast) var(--easing-out);
+}
+.tab:hover { color: var(--c-text); }
+.tabOn { color: var(--c-brand-dark); border-bottom-color: var(--c-brand); }
+
+.chart { margin-top: var(--s-5); }
+
+/* The editorial note behind each line on the trend chart. */
+.notes {
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--c-border);
+}
+
+.notesTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text);
+  margin-bottom: var(--s-3);
+}
+
+.note {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: var(--s-4);
+  padding: 5px 0;
+  align-items: baseline;
+}
+
+.noteK { font-size: 12px; font-weight: 600; color: var(--c-text); }
+
+.noteV { font-size: 12px; line-height: 1.5; color: var(--c-text-muted); }
+
+@media (max-width: 720px) {
+  .note { grid-template-columns: 1fr; gap: 2px; }
+}
+
+/* Two pickers side by side on the trend panel. */
+.controls { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+
+/* Panel header carrying a control on the right — the metric, segment and
+   "Break down by" pickers. Styled to match the pill select in JourneyBuilder
+   rather than inventing a second look for the same control. */
+.panelHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+}
+.field { display: flex; align-items: center; flex-shrink: 0; }
+.fieldLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--c-text-muted);
+  letter-spacing: 0.02em;
+}
+.select {
+  appearance: none;
+  margin-left: 10px;
+  border: 1px solid var(--c-border-mid4);
+  border-radius: var(--r-pill);
+  background: var(--c-surface);
+  padding: 4px 22px 4px 11px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-5);
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--c-text-mute-2) 50%),
+                    linear-gradient(135deg, var(--c-text-mute-2) 50%, transparent 50%);
+  background-position: calc(100% - 12px) 51%, calc(100% - 8px) 51%;
+  background-size: 4px 4px, 4px 4px;
+  background-repeat: no-repeat;
+}
+.select:hover { border-color: var(--c-brand-line); }
+/* ── Stage board ──────────────────────────────────────────────────── */
+
+.pill {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-border-mid2);
+  color: var(--c-text-3);
+  white-space: nowrap;
+  background: var(--c-surface);
+}
+
+/* ── Bars + sources ───────────────────────────────────────────────── */
+.bars { margin-top: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3); }
+
+.barRow { display: grid; grid-template-columns: 150px 1fr 32px; align-items: center; gap: var(--s-3); }
+.barLabel { font-size: 12.5px; font-weight: 500; color: var(--c-text-2); }
+
+.track { height: 8px; background: var(--c-surface-hi5); border-radius: var(--r-pill); overflow: hidden; }
+/* The brand fill is the default. Only the ageing bands override it inline, to
+   flag the past-a-month band — without this the funnel and owner bars drew a
+   zero-alpha rectangle and read as empty tracks. */
+.fill { height: 100%; border-radius: var(--r-pill); background: var(--c-brand); }
+
+.barNum {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--c-text);
+}
+
+.sources { margin-top: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3); }
+
+.source { border-left: 2px solid var(--c-brand-line); padding-left: var(--s-3); }
+.sourceK { font-size: 12.5px; font-weight: 650; color: var(--c-text); }
+.sourceV { font-size: 11.5px; font-weight: 500; color: var(--c-text-muted); margin-top: 1px; }
+
+@media (max-width: 1180px) {
+  .wrap { flex-direction: column; align-items: stretch; }
+  .cols { grid-template-columns: 1fr; }
+  .cols > :first-child, .cols > :last-child { margin-left: var(--s-8); margin-right: var(--s-8); }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(2) { border-right: 0; }
+}
+
+/* ── Funnel / tables ──────────────────────────────────────────────── */
+/* The queue's wrapper stays a plain block on purpose: its column header pins
+   with position:sticky, and overflow-x on this element would make it a scroll
+   container on both axes and kill that. */
+.tableWrap { margin-top: var(--s-4); border-top: 1px solid var(--c-border); }
+
+/* The wide breakdown tables scroll sideways rather than crushing their columns.
+   None of them carries a sticky header, so the scroll container costs nothing
+   here. The floor is what the columns need to stay readable. */
+.wideWrap {
+  margin-top: var(--s-4);
+  border-top: 1px solid var(--c-border);
+  overflow-x: auto;
+}
+.wideWrap .rowHead, .wideWrap .fRow, .wideWrap .rowStatic { min-width: 760px; }
+
+.rowHead, .fRow, .rowStatic {
+  display: grid;
+  align-items: center;
+  gap: var(--s-4);
+  padding: 11px var(--s-2);
+  text-align: left;
+}
+
+.rowHead {
+  font-family: var(--font-mono);
+  font-size: var(--th-size);
+  font-weight: var(--th-weight);
+  letter-spacing: var(--th-track);
+  color: var(--th-color);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.fRow, .rowStatic {
+  border-bottom: 1px solid var(--c-border-mid3);
+  font-size: 13px;
+  color: var(--c-text);
+  width: 100%;
+}
+
+/* Shared by the funnel's buttons and the queue's row links, so it has to carry
+   the reset for both — an anchor brings its own colour and underline. */
+.fRow {
+  border-top: 0; border-right: 0;
+  border-left: 2px solid transparent;
+  background: none;
+  font-family: inherit;
+  color: var(--c-text);
+  text-decoration: none;
+  cursor: pointer;
+}
+.fRow:hover { background: var(--c-hover-blue); }
+.fRow:focus-visible { outline: 2px solid var(--c-brand); outline-offset: -2px; }
+.fRowOn { background: var(--c-brand-soft); border-left-color: var(--c-brand); }
+
+.groupGrid  { grid-template-columns: 1.6fr 1.1fr 2.4fr 0.7fr 0.6fr 0.6fr 0.8fr; }
+.queueGrid  { grid-template-columns: 1.9fr 1.2fr 1.8fr 0.8fr 0.8fr; }
+
+/* The queue runs to hundreds of rows, so its column header pins rather than
+   scrolling away and leaving five unlabelled columns. Offset by the app
+   header, which is itself sticky at that height — the funnel and blocker
+   tables are short enough not to need this, so it is opt-in per table. */
+.stickyHead {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 1;
+  background: var(--c-surface);
+}
+
+/* Failure tables. The stage grid carries reach and loss together, so it is the
+   widest thing on the page; these all sit in .wideWrap, which is what actually
+   provides the sideways scroll. */
+.stageGrid   { grid-template-columns: 2.1fr 1fr 0.9fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr; }
+.reasonGrid  { grid-template-columns: 2.6fr 1.1fr 0.8fr 0.7fr 0.8fr 0.9fr; }
+.outcomeGrid { grid-template-columns: 1.4fr 0.9fr 0.9fr 0.7fr 0.9fr 1.5fr; }
+
+/* The fail-rate cell carries its own bar under the figure, so the column reads
+   as a comparison and not just six numbers. */
+.outcomeGrid .track { margin-top: 5px; height: 5px; }
+
+/* The tab's closing panel needs the bottom margin the two-column wrapper used
+   to provide. */
+.lastPanel { margin-bottom: var(--s-10); }
+
+/* The shortlist carries a rank ahead of the applicant. */
+.topGrid { grid-template-columns: 26px 1.7fr 1.1fr 1.7fr 0.8fr 0.8fr; }
+
+.rank {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Filters + pager ──────────────────────────────────────────────── */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  margin-top: var(--s-5);
+}
+
+.search {
+  flex: 1 1 200px;
+  min-width: 160px;
+  max-width: 280px;
+  appearance: none;
+  border: 1px solid var(--c-border-mid2);
+  border-radius: var(--r-button);
+  background: var(--c-surface);
+  color: var(--c-text);
+  font-family: inherit;
+  font-size: 12.5px;
+  padding: 7px 11px;
+}
+.search::placeholder { color: var(--c-text-muted); }
+.search:hover { border-color: var(--c-brand-line); }
+.search:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 1px; }
+
+.clear {
+  appearance: none;
+  border: 0;
+  background: none;
+  color: var(--c-brand-dark);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 4px;
+  cursor: pointer;
+  border-radius: var(--r-sm);
+}
+.clear:hover { text-decoration: underline; }
+.clear:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 2px; }
+
+.countLine {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--c-text-muted);
+  margin-top: var(--s-4);
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+}
+
+.pageBtn {
+  appearance: none;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-button);
+  background: var(--c-surface);
+  color: var(--c-text-2);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out);
+}
+.pageBtn:hover:not(:disabled) { background: var(--c-hover-blue); color: var(--c-text); }
+.pageBtn:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 2px; }
+.pageBtn:disabled { opacity: 0.4; cursor: default; }
+
+.pageNum {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Shown when a filter matches nobody, so the table never reads as broken. */
+.empty {
+  padding: var(--s-7) var(--s-2);
+  text-align: center;
+  font-size: 13px;
+  color: var(--c-text-muted);
+}
+
+/* Filter between the whole open book and the ten written-up files. */
+.seg {
+  display: flex;
+  flex: none;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-button);
+  overflow: hidden;
+}
+
+.segBtn {
+  appearance: none;
+  border: 0;
+  background: var(--c-surface);
+  color: var(--c-text-muted);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out);
+}
+.segBtn + .segBtn { border-left: 1px solid var(--c-border); }
+.segBtn:hover { background: var(--c-hover-blue); color: var(--c-text); }
+.segOn { background: var(--c-brand-soft); color: var(--c-brand-dark); }
+
+
+.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.strong { font-weight: 600; }
+
+/* Icon + cause text, so the stage that owns the failure is visible before the
+   Stage column is read. Sits at the top so the icon lines up with the reason
+   rather than the middle of a two-line block. */
+.causeCell { display: flex; align-items: flex-start; gap: 10px; }
+.causeIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px; height: 26px;
+  margin-top: 1px;
+  border-radius: var(--r-sm);
+  background: var(--c-surface-hi5);
+  color: var(--c-text-mute-2);
+}
+.dim { font-size: 11.5px; font-weight: 500; color: var(--c-text-muted); margin-top: 2px; }
+.dimInline { font-size: 12px; font-weight: 500; color: var(--c-text-muted); }
+.wrapText { font-size: 12.5px; white-space: normal; line-height: 1.45; }
+.bad { color: var(--c-danger); }
+
+.fName { display: flex; align-items: center; gap: var(--s-2); font-weight: 600; }
+
+.who { display: flex; align-items: center; gap: var(--s-3); min-width: 0; }
+.who > div { min-width: 0; }
+.avatar {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--c-brand);
+  background: var(--c-brand-tint);
+  border: 1px solid var(--c-brand-line);
+  border-radius: var(--r-button);
+  padding: 2px 5px;
+}

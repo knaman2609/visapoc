@@ -1,0 +1,7 @@
+/* Nova's logo rule: one fill, taken from the brand token, sized by the caller. */
+.logo {
+  display: block;
+  height: 1em;
+  width: auto;
+  fill: var(--c-brand);
+}

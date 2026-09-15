@@ -1,0 +1,75 @@
+/**
+ * Theme presets.
+ *
+ * Colour in this app resolves through three layers:
+ *
+ *   visa.css     Visa Nova's published palette, verbatim
+ *   tokens.css   the app's semantics, derived from those and from two seeds
+ *   themes.css   this file — presets that override seeds and nothing else
+ *
+ * Because tokens.css derives every accent tint from --c-brand and every
+ * neutral from --c-ink over --c-paper, a preset is a handful of lines rather
+ * than a second palette to keep in sync.
+ *
+ * Switch at runtime with no rebuild:
+ *
+ *   document.documentElement.dataset.accent = 'teal'     // or violet, emerald…
+ *   delete document.documentElement.dataset.accent       // back to Visa blue
+ *
+ * or set it in index.html: <html data-accent="teal">
+ */
+
+/* ── Accent ────────────────────────────────────────────────────────────
+   --c-brand feeds all eight brand tints, so only the three states are
+   listed here. Every accent below carries white at 6:1 or better, which
+   is what --c-on-brand assumes. */
+
+[data-accent="teal"] {
+  --c-brand:        #0f6b7a;
+  --c-brand-bright: color-mix(in srgb, var(--c-brand) 88%, #fff);
+  --c-brand-dark:   color-mix(in srgb, var(--c-brand) 74%, #000);
+}
+
+[data-accent="violet"] {
+  --c-brand:        #5b3fbf;
+  --c-brand-bright: color-mix(in srgb, var(--c-brand) 88%, #fff);
+  --c-brand-dark:   color-mix(in srgb, var(--c-brand) 74%, #000);
+}
+
+[data-accent="emerald"] {
+  --c-brand:        #0f6b45;
+  --c-brand-bright: color-mix(in srgb, var(--c-brand) 88%, #fff);
+  --c-brand-dark:   color-mix(in srgb, var(--c-brand) 74%, #000);
+}
+
+[data-accent="crimson"] {
+  --c-brand:        #a8203a;
+  --c-brand-bright: color-mix(in srgb, var(--c-brand) 88%, #fff);
+  --c-brand-dark:   color-mix(in srgb, var(--c-brand) 74%, #000);
+}
+
+[data-accent="graphite"] {
+  --c-brand:        #2f3640;
+  --c-brand-bright: color-mix(in srgb, var(--c-brand) 88%, #fff);
+  --c-brand-dark:   color-mix(in srgb, var(--c-brand) 74%, #000);
+}
+
+/* ── Paper ─────────────────────────────────────────────────────────────
+   Warms or cools every surface and border at once, because they are all
+   washes of --c-ink over this. Keep it near white: the ramp's contrast is
+   measured against it. */
+
+[data-paper="warm"] { --c-paper: #fffdfa; }
+[data-paper="cool"] { --c-paper: #fcfdff; }
+
+/* ── Ink ───────────────────────────────────────────────────────────────
+   --c-ink retints the entire neutral ramp from one line. It is deliberately
+   left at pure black by default, and no tinted preset ships here, because
+   the ramp has no room for one: --c-text-soft is 53.73% ink over paper,
+   which renders #767676 at 4.54:1 — four hundredths above the AA floor.
+   Pure black is the only ink that clears it at that step; the faintest
+   tint drops it to roughly 3.9:1.
+   
+   To tint the ink, raise --c-text-soft to about 59% first and re-check the
+   ramp. That collides with --c-text-mute-2 at 58.04%, so the two faint
+   steps need re-spacing together rather than one being nudged alone. */

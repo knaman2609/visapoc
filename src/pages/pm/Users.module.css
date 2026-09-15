@@ -1,0 +1,359 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Head ─────────────────────────────────────────────────────────── */
+.head { padding: var(--s-7) var(--s-8) var(--s-5); }
+
+.h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--c-text);
+}
+
+.sub {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 6px;
+  max-width: 84ch;
+  line-height: 1.55;
+}
+
+/* ── Stat strip ───────────────────────────────────────────────────── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.stat { padding: 20px 24px; border-right: 1px solid var(--c-border-mid3); }
+.stat:last-child { border-right: 0; }
+
+.statK {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+}
+
+.statV {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: var(--s-2);
+  color: var(--c-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.statN { font-size: 12px; font-weight: 500; color: var(--c-text-muted); margin-top: 2px; }
+
+/* ── Honesty note ─────────────────────────────────────────────────── */
+/* Every edit on these screens is session state. The note says so on the way
+   in rather than after somebody has spent ten minutes re-roling a team. */
+.notice {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin: var(--s-6) var(--s-8) 0;
+  padding: 11px var(--s-4);
+  border: 1px solid var(--c-warn-line);
+  border-radius: var(--r-lg);
+  background: var(--c-warn-bg);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--c-text-2);
+}
+.notice strong { font-weight: 700; }
+
+.reset {
+  appearance: none;
+  border: 0;
+  background: none;
+  color: var(--c-brand-dark);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 0;
+  cursor: pointer;
+}
+.reset:hover { text-decoration: underline; }
+.reset:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 2px; }
+
+/* ── Panel ────────────────────────────────────────────────────────── */
+.panel {
+  margin: var(--s-6) var(--s-8) 52px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  background: var(--c-surface);
+  padding: var(--s-5) var(--s-6) var(--s-6);
+}
+
+.panelHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+}
+
+.panelTitle {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--c-text);
+}
+
+.panelSub {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 4px;
+  max-width: 80ch;
+  line-height: 1.5;
+}
+
+.link {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--c-brand);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.link:hover { color: var(--c-brand-dark); text-decoration: underline; }
+.link:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 2px; }
+
+/* ── Filters ──────────────────────────────────────────────────────── */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  margin-top: var(--s-5);
+}
+
+.search {
+  flex: 1 1 200px;
+  min-width: 160px;
+  max-width: 280px;
+  appearance: none;
+  border: 1px solid var(--c-border-mid2);
+  border-radius: var(--r-button);
+  background: var(--c-surface);
+  color: var(--c-text);
+  font-family: inherit;
+  font-size: 12.5px;
+  padding: 7px 11px;
+}
+.search::placeholder { color: var(--c-text-muted); }
+.search:hover { border-color: var(--c-brand-line); }
+.search:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 1px; }
+
+.field { display: flex; align-items: center; flex-shrink: 0; }
+.fieldLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--c-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.select {
+  appearance: none;
+  margin-left: 10px;
+  border: 1px solid var(--c-border-mid4);
+  border-radius: var(--r-pill);
+  background: var(--c-surface);
+  padding: 4px 22px 4px 11px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-5);
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--c-text-mute-2) 50%),
+                    linear-gradient(135deg, var(--c-text-mute-2) 50%, transparent 50%);
+  background-position: calc(100% - 12px) 51%, calc(100% - 8px) 51%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+.select:hover { border-color: var(--c-brand-line); }
+.select:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 1px; }
+
+.seg {
+  display: flex;
+  flex: none;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-button);
+  overflow: hidden;
+}
+
+.segBtn {
+  appearance: none;
+  border: 0;
+  background: var(--c-surface);
+  color: var(--c-text-muted);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out);
+}
+.segBtn + .segBtn { border-left: 1px solid var(--c-border); }
+.segBtn:hover { background: var(--c-hover-blue); color: var(--c-text); }
+.segBtn:focus-visible { outline: 2px solid var(--c-brand); outline-offset: -2px; }
+.segOn { background: var(--c-brand-soft); color: var(--c-brand-dark); }
+
+.clear {
+  appearance: none;
+  border: 0;
+  background: none;
+  color: var(--c-brand-dark);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 4px;
+  cursor: pointer;
+  border-radius: var(--r-sm);
+}
+.clear:hover { text-decoration: underline; }
+.clear:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 2px; }
+
+.countLine {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--c-text-muted);
+  margin-top: var(--s-4);
+}
+
+/* ── Table ────────────────────────────────────────────────────────── */
+.tableWrap { overflow-x: auto; }
+
+.rowHead, .row {
+  display: grid;
+  align-items: center;
+  gap: var(--s-4);
+  padding: 11px var(--s-2);
+  text-align: left;
+  min-width: 760px;
+}
+
+.grid { grid-template-columns: 2.2fr 1.2fr 1.1fr 0.9fr 0.8fr 1fr; }
+
+.rowHead {
+  font-family: var(--font-mono);
+  font-size: var(--th-size);
+  font-weight: var(--th-weight);
+  letter-spacing: var(--th-track);
+  color: var(--th-color);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--c-border);
+}
+
+/* An anchor brings its own colour and underline, so the row has to reset both
+   before it can read as a table row. */
+.row {
+  border-bottom: 1px solid var(--c-border-mid3);
+  border-left: 2px solid transparent;
+  font-size: 13px;
+  color: var(--c-text);
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+}
+.row:hover { background: var(--c-hover-blue); }
+.row:focus-visible { outline: 2px solid var(--c-brand); outline-offset: -2px; }
+
+.name { display: flex; align-items: center; gap: var(--s-2); font-weight: 600; }
+.roleName { font-size: 12.5px; font-weight: 600; }
+.dim { font-size: 11.5px; font-weight: 500; color: var(--c-text-muted); margin-top: 2px; }
+.dimInline { font-size: 12px; font-weight: 500; color: var(--c-text-muted); }
+.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--c-brand);
+  background: var(--c-brand-tint);
+  border: 1px solid var(--c-brand-line);
+  border-radius: var(--r-button);
+  padding: 2px 5px;
+}
+
+/* Status. Three states, three of Nova's messaging colours — the shared
+   StatusPill only names active/review/paused, so the account states carry
+   their own class here rather than borrowing a word that means something
+   else elsewhere in the console. */
+.pill {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--r-pill);
+  border: 1px solid transparent;
+  padding: 4px 10px;
+}
+.active { background: var(--c-ok-bg-2); border-color: var(--c-ok-border); color: var(--c-ok); }
+.invited { background: var(--c-warn-bg); border-color: var(--c-warn-line); color: var(--c-warn); }
+.suspended { background: var(--c-danger-bg); border-color: var(--c-danger-line); color: var(--c-danger); }
+
+/* Shown when a filter matches nobody, so the table never reads as broken. */
+.empty {
+  padding: var(--s-7) var(--s-2);
+  text-align: center;
+  font-size: 13px;
+  color: var(--c-text-muted);
+}
+
+/* ── Pager ────────────────────────────────────────────────────────── */
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+}
+
+.pageBtn {
+  appearance: none;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-button);
+  background: var(--c-surface);
+  color: var(--c-text-2);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out);
+}
+.pageBtn:hover:not(:disabled) { background: var(--c-hover-blue); color: var(--c-text); }
+.pageBtn:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 2px; }
+.pageBtn:disabled { opacity: 0.4; cursor: default; }
+
+.pageNum {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .segBtn, .pageBtn { transition: none; }
+}

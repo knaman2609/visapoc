@@ -1,0 +1,80 @@
+.wrap {
+  padding: 22px 0 24px;
+}
+
+.legendRow {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.legend {
+  display: flex;
+  gap: 18px;
+  margin-left: auto;
+}
+
+.legItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--c-text-4);
+}
+
+.legDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.svgWrap {
+  margin-top: 20px;
+  position: relative;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 300px;
+  overflow: visible;
+}
+
+.monthRow {
+  border-top: 1px solid var(--c-border);
+  display: flex;
+  padding: 8px 20px 0;
+}
+
+.month {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+}
+
+.withAxis { padding-left: 52px; }
+
+.plot { position: relative; }
+
+.yAxis {
+  position: absolute;
+  left: -52px;
+  top: 0;
+  bottom: 0;
+  width: 44px;
+}
+
+.yLabel {
+  position: absolute;
+  right: 0;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--c-text-mute-2);
+  white-space: nowrap;
+}

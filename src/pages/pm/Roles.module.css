@@ -1,0 +1,315 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Head ─────────────────────────────────────────────────────────── */
+.head { padding: var(--s-7) var(--s-8) var(--s-5); }
+
+.h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--c-text);
+}
+
+.sub {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 6px;
+  max-width: 84ch;
+  line-height: 1.55;
+}
+
+/* Repeated from the seat list on purpose: somebody can land on either screen
+   first, and the caveat has to be on whichever one that is. */
+.notice {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin: 0 var(--s-8);
+  padding: 11px var(--s-4);
+  border: 1px solid var(--c-warn-line);
+  border-radius: var(--r-lg);
+  background: var(--c-warn-bg);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--c-text-2);
+}
+.notice strong { font-weight: 700; }
+
+.reset {
+  appearance: none;
+  border: 0;
+  background: none;
+  color: var(--c-brand-dark);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 0;
+  cursor: pointer;
+}
+.reset:hover { text-decoration: underline; }
+.reset:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 2px; }
+
+/* ── Panel ────────────────────────────────────────────────────────── */
+.panel {
+  margin: var(--s-6) var(--s-8) 52px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  background: var(--c-surface);
+  padding: var(--s-5) var(--s-6) var(--s-6);
+}
+
+.panelHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+}
+
+.panelTitle {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--c-text);
+}
+
+.panelSub {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  margin-top: 4px;
+  max-width: 80ch;
+  line-height: 1.5;
+}
+
+.link {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--c-brand);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.link:hover { color: var(--c-brand-dark); text-decoration: underline; }
+.link:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 2px; }
+
+/* ── Matrix ───────────────────────────────────────────────────────── */
+/* One grid for the whole table, so a tick can never drift out of line with the
+   column head above it. The group and permission rows are `display: contents`
+   — they exist to structure the markup, not to break the alignment. */
+.tableWrap { overflow-x: auto; margin-top: var(--s-5); }
+
+.matrix {
+  display: grid;
+  grid-template-columns:
+    minmax(250px, 1.7fr)
+    repeat(var(--roles, 6), minmax(94px, 1fr))
+    minmax(78px, 0.7fr);
+  min-width: 900px;
+  align-items: stretch;
+}
+
+.groupRow, .permRow { display: contents; }
+
+.cell { padding: 10px var(--s-3); }
+
+.corner, .colHead {
+  border-bottom: 2px solid var(--c-border-mid4);
+  align-self: end;
+}
+
+.corner {
+  font-family: var(--font-mono);
+  font-size: var(--th-size);
+  font-weight: var(--th-weight);
+  letter-spacing: var(--th-track);
+  color: var(--th-color);
+  text-transform: uppercase;
+}
+
+.colHead { border-left: 1px solid var(--c-border-mid3); }
+
+.roleName {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+}
+
+.roleLine {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.roleSeats {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--c-text-soft);
+  margin-top: 6px;
+}
+
+.tallyHead {
+  font-family: var(--font-mono);
+  font-size: var(--th-size);
+  font-weight: var(--th-weight);
+  letter-spacing: var(--th-track);
+  color: var(--th-color);
+  text-transform: uppercase;
+  text-align: right;
+}
+
+/* Group banner across the full width — the four groups are the sidebar's own
+   grouping, so the matrix reads in the same order as the console. */
+.groupLabel {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-text-3);
+  background: var(--c-surface-hi3);
+  padding: 8px var(--s-3);
+  border-bottom: 1px solid var(--c-border-mid3);
+  margin-top: var(--s-4);
+}
+
+.rowHead {
+  border-bottom: 1px solid var(--c-border-mid3);
+  min-width: 0;
+}
+
+.permLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text);
+}
+
+.permLine {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  line-height: 1.45;
+  margin-top: 3px;
+}
+
+.permSurface {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--c-text-soft);
+  margin-top: 3px;
+}
+
+.sensitive {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-danger);
+  background: var(--c-danger-soft);
+  border: 1px solid var(--c-danger-line);
+  border-radius: var(--r-button);
+  padding: 2px 5px;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--c-brand);
+  background: var(--c-brand-tint);
+  border: 1px solid var(--c-brand-line);
+  border-radius: var(--r-button);
+  padding: 2px 5px;
+}
+
+.cellBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid var(--c-border-mid3);
+  border-bottom: 1px solid var(--c-border-mid3);
+}
+
+.tick {
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--c-border-mid4);
+  border-radius: var(--r-button);
+  background: var(--c-surface);
+  color: var(--c-text-dim);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--easing-out),
+              border-color var(--dur-fast) var(--easing-out);
+}
+.tick:hover { border-color: var(--c-brand); background: var(--c-brand-tint); }
+.tick:focus-visible { outline: 2px solid var(--c-brand); outline-offset: 2px; }
+
+.tickOn {
+  background: var(--c-brand);
+  border-color: var(--c-brand);
+  color: var(--c-on-brand);
+  font-weight: 700;
+}
+.tickOn:hover { background: var(--c-brand-dark); border-color: var(--c-brand-dark); }
+
+/* A granted privileged permission is the one cell in the grid worth finding
+   from across the room, so it takes the warning colour rather than the brand. */
+.tickHot {
+  background: var(--c-danger);
+  border-color: var(--c-danger);
+}
+.tickHot:hover { background: var(--c-danger-3); border-color: var(--c-danger-3); }
+
+.tally {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-bottom: 1px solid var(--c-border-mid3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.foot {
+  margin-top: var(--s-5);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  line-height: 1.55;
+  max-width: 90ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tick { transition: none; }
+}

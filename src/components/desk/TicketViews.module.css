@@ -1,0 +1,353 @@
+/* ── List ─────────────────────────────────────────────────────────── */
+.list { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+
+.listBar {
+  flex: none;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px 0 24px;
+  border-bottom: 1px solid var(--xd-border);
+}
+
+.selectGroup { display: flex; align-items: center; gap: 6px; }
+
+.box {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: var(--xd-accent);
+  cursor: pointer;
+}
+
+.preset {
+  appearance: none;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  padding: 3px 6px;
+  font-family: inherit;
+  font-size: 12.5px;
+  color: var(--xd-fg-2);
+  cursor: pointer;
+}
+.preset:hover { background: var(--xd-muted); }
+.preset:focus-visible { outline: 2px solid var(--xd-accent); outline-offset: 1px; }
+
+.range {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--xd-fg-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.roundBtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--xd-border);
+  border-radius: 999px;
+  background: var(--xd-surface);
+  color: var(--xd-fg-2);
+  cursor: pointer;
+}
+.roundBtn:hover:not(:disabled) { background: var(--xd-hover); }
+.roundBtn:disabled { opacity: 0.4; cursor: default; }
+.roundBtn:focus-visible { outline: 2px solid var(--xd-accent); outline-offset: 1px; }
+
+/* The list scrolls both ways inside its own pane, so a narrow window never
+   pushes the page body sideways. Every scroll pane on the desk is also
+   positioned, so anything absolutely positioned inside it is clipped by the
+   pane rather than laid out against the page — see `.srOnly` in DeskBits. */
+.listScroll { position: relative; flex: 1; min-height: 0; overflow: auto; }
+
+.listGrid {
+  display: grid;
+  grid-template-columns: 24px 52px minmax(240px, 3fr) 48px 78px minmax(170px, 2fr) 150px 60px 36px 84px;
+  gap: 12px;
+  align-items: center;
+  /* The fixed columns and gaps sum to 1050px; with 48px of row padding under
+     border-box, anything narrower lets the last column hang past its row. */
+  min-width: 1098px;
+}
+
+.listHead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: 34px;
+  padding: 0 24px;
+  background: var(--xd-surface);
+  border-bottom: 1px solid var(--xd-border);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--xd-fg-3);
+}
+
+.row {
+  padding: 10px 24px;
+  border-bottom: 1px solid var(--xd-border);
+  background: var(--xd-surface);
+  font-size: 13px;
+  color: var(--xd-fg-2);
+  cursor: pointer;
+}
+.row:hover { background: var(--xd-hover); }
+
+/* Unread reads the way a mail client reads it: shaded, and set bold. */
+.unread, .unread:hover { background: var(--xd-muted); }
+.unread .title, .unread .xid, .unread .senderName, .unread .latest { font-weight: 600; color: var(--xd-fg); }
+.picked, .picked:hover { background: var(--xd-accent-subtle); }
+
+.subject { display: flex; align-items: center; gap: 8px; min-width: 0; }
+
+.xid {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--xd-fg-3);
+}
+
+.title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--xd-fg);
+  text-decoration: none;
+}
+.title:hover { text-decoration: underline; }
+.title:focus-visible { outline: 2px solid var(--xd-accent); outline-offset: 2px; border-radius: 2px; }
+
+.cat {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  border-radius: 3px;
+  padding: 0 5px;
+  background: var(--xd-blue-100);
+  color: var(--xd-blue-700);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.count {
+  display: inline-flex;
+  justify-content: center;
+  min-width: 22px;
+  border-radius: 5px;
+  background: var(--xd-muted);
+  padding: 1px 6px;
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--xd-fg-2);
+}
+.unread .count { background: var(--xd-surface); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-size: 10.5px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.chipDraft { background: var(--xd-amber-bg); color: var(--xd-amber); }
+.chipAi { background: var(--xd-violet-bg); color: var(--xd-violet); }
+
+.sender { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 12px; }
+.senderDot { flex: none; width: 4px; height: 4px; border-radius: 999px; background: var(--xd-border-strong); }
+.senderName { white-space: nowrap; color: var(--xd-fg-2); }
+.senderMail { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--xd-fg-3); }
+
+.cellClip { min-width: 0; }
+
+.nobody, .nobodySm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--xd-border-strong);
+  border-radius: 6px;
+  color: var(--xd-fg-3);
+}
+.nobody { width: 22px; height: 22px; }
+.nobodySm { width: 18px; height: 18px; }
+
+.mono { font-family: var(--font-mono); font-size: 11.5px; color: var(--xd-fg-3); }
+
+.latest { display: flex; flex-direction: column; font-size: 12px; line-height: 1.3; color: var(--xd-fg-2); }
+.latestTime { font-size: 11px; font-weight: 400; color: var(--xd-fg-3); }
+
+.empty {
+  padding: 56px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--xd-fg-3);
+}
+
+/* ── Table ────────────────────────────────────────────────────────── */
+.tableScroll { position: relative; flex: 1; min-height: 0; overflow: auto; }
+
+.table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--xd-subtle);
+  border-bottom: 1px solid var(--xd-border);
+  padding: 9px 12px;
+  text-align: left;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--xd-fg-3);
+  white-space: nowrap;
+}
+.table th:first-child, .table td:first-child { padding-left: 24px; }
+
+.table td {
+  border-bottom: 1px solid var(--xd-border);
+  padding: 9px 12px;
+  color: var(--xd-fg-2);
+  vertical-align: middle;
+}
+
+.table tbody tr { cursor: pointer; }
+.table tbody tr:hover td { background: var(--xd-hover); }
+.table tr.unread td { background: var(--xd-muted); }
+
+.tdSubject {
+  max-width: 440px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tdSubject .xid { margin-right: 8px; }
+
+.nowrap { white-space: nowrap; }
+.person { display: inline-flex; align-items: center; gap: 6px; }
+.muted { color: var(--xd-fg-3); }
+.labels { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+
+/* ── Kanban ───────────────────────────────────────────────────────── */
+.board {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(250px, 1fr);
+  gap: 12px;
+  padding: 16px;
+  overflow: auto;
+  background: var(--xd-subtle);
+}
+
+.column { display: flex; flex-direction: column; min-height: 0; }
+
+.columnHead { display: flex; align-items: center; gap: 8px; padding: 2px 4px 10px; }
+
+.columnName {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--xd-fg-2);
+}
+
+.columnCount {
+  border-radius: 999px;
+  background: var(--xd-muted);
+  padding: 0 7px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--xd-fg-3);
+}
+
+.columnBody {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 2px 8px;
+}
+
+/* The left edge carries the stage colour, as Desk's cards do. */
+.card {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  border: 1px solid var(--xd-border);
+  border-left: 3px solid var(--xd-border-strong);
+  border-radius: var(--xd-radius);
+  background: var(--xd-surface);
+  padding: 10px 12px;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.card:hover { border-top-color: var(--xd-border-strong); border-right-color: var(--xd-border-strong); border-bottom-color: var(--xd-border-strong); }
+.card:focus-visible { outline: 2px solid var(--xd-accent); outline-offset: 1px; }
+.bar_todo { border-left-color: var(--xd-status-new); }
+.bar_started { border-left-color: var(--xd-status-scheduled); }
+.bar_paused { border-left-color: var(--xd-status-paused); }
+.bar_completed { border-left-color: var(--xd-status-success); }
+
+.cardTop { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+
+.cardTitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--xd-fg);
+}
+.cardUnread { font-weight: 600; }
+
+.cardMeta { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+
+.tag {
+  border-radius: 5px;
+  background: var(--xd-accent-badge);
+  padding: 1px 6px;
+  font-size: 10.5px;
+  color: var(--xd-accent-hover);
+}
+.more { font-size: 10.5px; color: var(--xd-fg-3); }
+
+.cardFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--xd-fg-3);
+}
+.cardWho { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.overflow, .columnEmpty {
+  padding: 8px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--xd-fg-3);
+}

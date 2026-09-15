@@ -1,0 +1,123 @@
+/* The journey spine: one application against the eight onboarding stages.
+   Shared by the journey page and the queue drawer. */
+.steps { list-style: none; margin: var(--s-5) 0 0; padding: 0; }
+
+/* Each step draws its own connector down to the next, so the line only spans
+   the stages themselves and does not overshoot the last one. */
+.step {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: var(--s-4);
+  position: relative;
+  padding-bottom: var(--s-5);
+}
+.step:last-child { padding-bottom: 0; }
+.step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 22px;
+  bottom: 0;
+  width: 2px;
+  background: var(--c-border-mid2);
+}
+
+.marker {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--r-pill);
+  border: 2px solid var(--c-border-mid2);
+  background: var(--c-surface);
+  color: var(--c-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.dot { width: 6px; height: 6px; border-radius: var(--r-pill); background: currentColor; }
+
+/* min-width on a grid child defaults to auto, which lets a long blocker string
+   push the track wider than the dock. Zero lets it wrap instead. */
+.stepBody { min-width: 0; }
+
+.stepHead { display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap; }
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--c-brand);
+  background: var(--c-brand-tint);
+  border: 1px solid var(--c-brand-line);
+  border-radius: var(--r-button);
+  padding: 2px 5px;
+}
+
+.stepName { font-size: 14px; font-weight: 650; color: var(--c-text); }
+
+.stepState {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  margin-left: auto;
+}
+
+.stepLine { font-size: 12.5px; font-weight: 500; color: var(--c-text-muted); margin-top: 3px; line-height: 1.5; }
+
+/* Cleared steps recede, the current one is the only thing at full strength,
+   and steps never reached are held back further still. */
+.cleared .marker { border-color: var(--c-ok-border); background: var(--c-ok-bg); color: var(--c-ok); }
+.cleared .stepName { color: var(--c-text-2); }
+
+.here .marker { border-color: var(--c-brand); background: var(--c-brand); color: var(--c-on-brand); }
+.here .stepName { color: var(--c-text); }
+.here .stepState { color: var(--c-brand-dark); }
+
+.ahead .marker { border-style: dashed; }
+.ahead .stepName, .ahead .stepLine, .ahead .tag { opacity: 0.55; }
+
+/* The one block on the page that says what to do next. */
+.stuck {
+  margin-top: var(--s-4);
+  border: 1px solid var(--c-brand-line);
+  border-left-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--c-brand-soft);
+  padding: var(--s-4) var(--s-5);
+}
+
+.stuckK {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  margin-top: var(--s-3);
+}
+.stuckK:first-child { margin-top: 0; }
+
+.stuckV { font-size: 13px; font-weight: 550; color: var(--c-text); margin-top: 2px; line-height: 1.5; }
+
+.stuckFoot {
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--c-brand-line);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+}
+
+/* The 400px dock. Tighter rhythm and a smaller marker, because eight stages
+   plus the callout have to fit beside the queue rather than across a page. */
+.compact .step { padding-bottom: var(--s-4); gap: var(--s-3); grid-template-columns: 18px 1fr; }
+.compact .step:not(:last-child)::before { left: 8px; top: 18px; }
+.compact .marker { width: 18px; height: 18px; }
+.compact .stepName { font-size: 13px; }
+.compact .stuck { padding: var(--s-3) var(--s-4); }

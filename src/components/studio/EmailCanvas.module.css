@@ -1,0 +1,469 @@
+/* ── The email itself ──────────────────────────────────────────────────
+   Nothing in here reads an app token. An email is a separate artefact that
+   happens to be displayed inside the console, and the moment it inherits the
+   console's greys it stops being a preview of what will ship.
+
+   Every value below is driven by the brand kit: --bk-brand, --bk-ink,
+   --bk-body, --bk-paper, --bk-band, the type pair, the button radius and
+   --bk-gap, which is the one multiplier that makes the whole stack tighter
+   or airier without touching a block. */
+.mail {
+  --pad: 28px;
+  width: var(--bk-width, 560px);
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--bk-paper, #fff);
+  font-family: var(--bk-body-font, system-ui, sans-serif);
+  color: var(--bk-body, #4a5068);
+  padding-bottom: 2px;
+}
+.flat { width: 100%; }
+
+.token {
+  background: color-mix(in srgb, var(--bk-brand, #1434cb) 11%, transparent);
+  color: var(--bk-brand-dark, #0f2596);
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-size: .92em;
+}
+
+/* ── Alignment, one class for every block that takes it ────────────── */
+.al_left { text-align: left; }
+.al_center { text-align: center; }
+
+/* ── Logo lock-up ──────────────────────────────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: calc(22px * var(--bk-gap, 1)) var(--pad) calc(6px * var(--bk-gap, 1));
+}
+.al_center.logo { justify-content: center; }
+.logoMark {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 3px;
+  background: var(--bk-brand, #1434cb);
+  color: #fff;
+  font-family: var(--bk-head-font);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+.logoText { display: flex; flex-direction: column; line-height: 1.25; text-align: left; }
+.logoText b {
+  font-family: var(--bk-head-font);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--bk-ink, #1a1f36);
+  letter-spacing: -0.005em;
+}
+.logoText i {
+  font-style: normal;
+  font-size: 10.5px;
+  color: color-mix(in srgb, var(--bk-body, #4a5068) 72%, transparent);
+}
+
+/* ── Type ──────────────────────────────────────────────────────────── */
+.h {
+  font-family: var(--bk-head-font);
+  font-size: calc(21px * var(--bk-scale, 1));
+  font-weight: 700;
+  line-height: 1.26;
+  letter-spacing: -0.018em;
+  color: var(--bk-ink, #1a1f36);
+  margin: calc(20px * var(--bk-gap, 1)) var(--pad) 0;
+  text-wrap: balance;
+}
+.hs_sm { font-size: calc(16px * var(--bk-scale, 1)); letter-spacing: -0.008em; }
+.hs_md { font-size: calc(18.5px * var(--bk-scale, 1)); }
+.hs_lg { font-size: calc(23px * var(--bk-scale, 1)); }
+
+.p {
+  font-size: 14px;
+  line-height: 1.68;
+  color: var(--bk-body, #4a5068);
+  margin: calc(12px * var(--bk-gap, 1)) var(--pad) 0;
+  white-space: pre-wrap;
+  text-wrap: pretty;
+}
+
+.ul {
+  list-style: none;
+  margin: calc(14px * var(--bk-gap, 1)) var(--pad) 0;
+  padding: 0;
+}
+.ul li {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--bk-body, #4a5068);
+  padding: 6px 0;
+}
+.ul li + li { border-top: 1px solid color-mix(in srgb, var(--bk-ink, #1a1f36) 8%, transparent); }
+.tick {
+  flex: none;
+  width: 15px; height: 15px;
+  margin-top: 3px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--bk-brand, #1434cb) 12%, transparent);
+  position: relative;
+}
+.tick::after {
+  content: '';
+  position: absolute;
+  left: 4.5px; top: 3.5px;
+  width: 4px; height: 7px;
+  border: solid var(--bk-brand, #1434cb);
+  border-width: 0 1.6px 1.6px 0;
+  transform: rotate(42deg);
+}
+
+/* ── The number, said loudly ───────────────────────────────────────── */
+.stat {
+  margin: calc(18px * var(--bk-gap, 1)) var(--pad) 0;
+  padding: calc(20px * var(--bk-gap, 1)) 18px;
+  background: var(--bk-band, #f4f6fb);
+  border-radius: 6px;
+}
+.statV {
+  display: block;
+  font-family: var(--bk-head-font);
+  font-size: calc(38px * var(--bk-scale, 1));
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--bk-brand, #1434cb);
+  font-variant-numeric: tabular-nums;
+}
+.statK {
+  display: block;
+  margin-top: 7px;
+  font-size: 12px;
+  color: var(--bk-body, #4a5068);
+}
+
+/* ── Offer panel: the terms stay attached to the offer ─────────────── */
+.offer {
+  display: flex;
+  margin: calc(18px * var(--bk-gap, 1)) var(--pad) 0;
+  border: 1px solid color-mix(in srgb, var(--bk-ink, #1a1f36) 12%, transparent);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bk-paper, #fff);
+}
+.offerRule { flex: none; width: 4px; background: var(--bk-accent, #f7b600); }
+.offerBody { display: block; padding: 14px 16px; text-align: left; }
+.offerBody b {
+  display: block;
+  font-family: var(--bk-head-font);
+  font-size: calc(17px * var(--bk-scale, 1));
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--bk-ink, #1a1f36);
+}
+.offerBody i {
+  display: block;
+  margin-top: 3px;
+  font-style: normal;
+  font-size: 12.5px;
+  color: var(--bk-body, #4a5068);
+}
+.offerBody em {
+  display: inline-block;
+  margin-top: 9px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--bk-accent, #f7b600) 22%, transparent);
+  font-style: normal;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: color-mix(in srgb, var(--bk-ink, #1a1f36) 88%, transparent);
+}
+
+/* ── Countdown ─────────────────────────────────────────────────────── */
+.count { margin: calc(18px * var(--bk-gap, 1)) var(--pad) 0; text-align: center; }
+.countRow { display: flex; justify-content: center; gap: 8px; }
+.countTile {
+  display: block;
+  min-width: 58px;
+  padding: 10px 6px 8px;
+  border-radius: 5px;
+  background: var(--bk-ink, #1a1f36);
+  color: #fff;
+}
+.countTile b {
+  display: block;
+  font-family: var(--bk-head-font);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.countTile i {
+  display: block;
+  margin-top: 4px;
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .62;
+}
+.countK { display: block; margin-top: 10px; font-size: 12.5px; color: var(--bk-body); }
+
+/* ── Two-up ────────────────────────────────────────────────────────── */
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: calc(18px * var(--bk-gap, 1)) var(--pad) 0;
+}
+.col {
+  display: block;
+  padding: 13px 14px;
+  border-radius: 5px;
+  background: var(--bk-band, #f4f6fb);
+  text-align: left;
+}
+.col b {
+  display: block;
+  font-family: var(--bk-head-font);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--bk-ink, #1a1f36);
+}
+.col i {
+  display: block;
+  margin-top: 4px;
+  font-style: normal;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--bk-body, #4a5068);
+  white-space: pre-wrap;
+}
+
+/* ── Action ────────────────────────────────────────────────────────── */
+.btnRow { margin: calc(20px * var(--bk-gap, 1)) var(--pad) 0; }
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: var(--bk-radius, 6px);
+  background: var(--bk-brand, #1434cb);
+  color: #fff;
+  font-family: var(--bk-head-font);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.btnOutline {
+  background: transparent;
+  color: var(--bk-brand, #1434cb);
+  box-shadow: inset 0 0 0 1.5px var(--bk-brand, #1434cb);
+}
+.linkRow { margin: calc(12px * var(--bk-gap, 1)) var(--pad) 0; }
+.link {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--bk-brand, #1434cb);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.hr {
+  margin: calc(20px * var(--bk-gap, 1)) var(--pad) 0;
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--bk-ink, #1a1f36) 11%, transparent);
+}
+.spacer { height: 24px; }
+.sp_sm { height: 12px; }
+.sp_md { height: 24px; }
+.sp_lg { height: 40px; }
+
+.legal {
+  margin: calc(16px * var(--bk-gap, 1)) var(--pad) 0;
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--bk-body, #4a5068) 74%, transparent);
+}
+
+.foot {
+  margin-top: calc(22px * var(--bk-gap, 1));
+  padding: 14px var(--pad);
+  border-top: 1px solid color-mix(in srgb, var(--bk-ink, #1a1f36) 9%, transparent);
+  background: var(--bk-band, #f4f6fb);
+  font-size: 10px;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--bk-body, #4a5068) 70%, transparent);
+}
+
+/* ── Handset: the same email, at the width it is actually read ─────── */
+.compact { --pad: 18px; width: 100%; }
+.compact .h { font-size: calc(18px * var(--bk-scale, 1)); }
+.compact .hs_sm { font-size: calc(15px * var(--bk-scale, 1)); }
+.compact .hs_md { font-size: calc(16.5px * var(--bk-scale, 1)); }
+.compact .p { font-size: 13px; }
+.compact .statV { font-size: calc(30px * var(--bk-scale, 1)); }
+.compact .banner { height: 104px; }
+.compact .h_lg { height: 132px; }
+.compact .cols { grid-template-columns: 1fr; }
+.compact .countTile { min-width: 48px; }
+.compact .btn { padding: 11px 18px; font-size: 13px; }
+
+/* ── Dark mode: what Gmail actually does to a light email ──────────────
+   It does not invert the artwork, and it does not always invert a table
+   background — so this darkens the paper and the ink and leaves the banners
+   alone, which is exactly the mismatch worth catching before a send. */
+/* The colour swap itself is done in JS — see EmailCanvas — because the kit
+   arrives as inline custom properties. What is left here is the chrome that
+   is not driven by a kit variable. */
+.dark { background: #1f1f1f; }
+.dark .offer { border-color: rgba(255, 255, 255, .16); }
+.dark .countTile { background: #3c4043; }
+.dark .foot { border-top-color: rgba(255, 255, 255, .12); }
+
+/* ── Banners: drawn, so a placeholder still means something ────────── */
+.banner {
+  display: grid;
+  place-items: center;
+  height: 140px;
+  overflow: hidden;
+  position: relative;
+}
+.h_sm { height: 96px; }
+.h_md { height: 140px; }
+.h_lg { height: 184px; }
+
+.bannerCard { background: linear-gradient(135deg, #1a2740, #0d1524); }
+.cardArt {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 148px;
+  height: 92px;
+  padding: 12px;
+  border-radius: 8px;
+  background: linear-gradient(140deg, #2b3d64, #131c2e);
+  box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .7);
+}
+.chip {
+  width: 24px; height: 17px;
+  border-radius: 3px;
+  background: linear-gradient(150deg, #e2c765, #b8901f);
+}
+.cardName { font-size: 9.5px; font-weight: 600; color: rgba(255, 255, 255, .82); letter-spacing: .04em; }
+.cardMark {
+  align-self: flex-end;
+  margin-top: -12px;
+  font-size: 11px;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: .02em;
+  color: #fff;
+}
+
+.bannerBenefit { background: var(--bk-brand, #1434cb); flex-direction: column; color: #fff; }
+.benefitV {
+  display: block;
+  font-family: var(--bk-head-font);
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.benefitK { display: block; font-size: 11.5px; color: rgba(255, 255, 255, .78); margin-top: 3px; }
+
+.bannerBrand { background: var(--bk-brand-dark, #0f2596); }
+.bannerBrand span {
+  font-size: 28px;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: .14em;
+  color: #fff;
+}
+
+/* A horizon, not a stock photo — enough to hold the slot honestly. */
+.bannerPhoto { background: linear-gradient(#f6c96b, #f2a25c 46%, #7fb3a8 46%, #4d8f88); }
+.sun {
+  position: absolute;
+  top: 24px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: #fff2d0;
+  opacity: .92;
+}
+.hill, .hill2 {
+  position: absolute;
+  bottom: 0;
+  height: 50%;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  background: #3f7a74;
+}
+.hill { left: -14%; width: 62%; }
+.hill2 { right: -10%; width: 52%; background: #34645f; }
+
+.bannerPoints { background: linear-gradient(160deg, #16204a, #0a0f24); flex-direction: column; }
+.coins { position: absolute; inset: 0; }
+.coins i {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffe6a3, #c9a227 60%, #8a6c14);
+  opacity: .9;
+}
+.coins i:nth-child(1) { width: 40px; height: 40px; left: 12%; top: 22%; }
+.coins i:nth-child(2) { width: 26px; height: 26px; right: 16%; top: 18%; opacity: .7; }
+.coins i:nth-child(3) { width: 54px; height: 54px; right: 8%; bottom: -14px; opacity: .5; }
+.pointsV {
+  position: relative;
+  font-family: var(--bk-head-font);
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.pointsK { position: relative; font-size: 11.5px; color: rgba(255, 255, 255, .72); margin-top: 2px; }
+
+.bannerCity { background: linear-gradient(#f0a35c 0%, #c46f6a 40%, #3b3563 100%); align-items: end; }
+.skyline {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  width: 100%;
+  height: 62%;
+  padding: 0 8px;
+}
+.skyline i { flex: 1; background: #221d3a; border-radius: 2px 2px 0 0; }
+
+/* ── Selecting on the artboard ─────────────────────────────────────────
+   A 1px inset ring rather than an outline, so nothing reflows when a block
+   is picked and the ring follows the block's own bounds. */
+.pick {
+  position: relative;
+  cursor: default;
+  border-radius: 2px;
+}
+.pick::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: box-shadow 120ms cubic-bezier(.23, 1, .32, 1);
+}
+.pick:hover::after { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-brand) 40%, transparent); }
+.picked::after { box-shadow: inset 0 0 0 2px var(--c-brand); }
+.pick:focus-visible { outline: none; }
+.pick:focus-visible::after { box-shadow: inset 0 0 0 2px var(--c-brand); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pick::after { transition: none; }
+}
